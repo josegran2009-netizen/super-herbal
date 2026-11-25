@@ -591,11 +591,12 @@
     .js .revelar.izq  { transform: translate3d(-64px,0,0); }
     .js .revelar.der  { transform: translate3d(64px,0,0); }
     .js .revelar.zoom { transform: translate3d(0,40px,0) scale(.92); }
-    .js .revelar.visto { opacity: 1; transform: none; }
     @media (max-width: 860px) {
       .js .revelar.izq { transform: translate3d(-30px,0,0); }
       .js .revelar.der { transform: translate3d(30px,0,0); }
     }
+    /* Va después de las reglas de celular para que, ya visible, todo quede en su lugar */
+    .js .revelar.visto, .js .revelar.izq.visto, .js .revelar.der.visto, .js .revelar.zoom.visto { opacity: 1; transform: none; }
 
   </style>
 </head>
@@ -915,7 +916,7 @@
           referencia: "",
           telefono: "312 270 1111",
           whatsapp: "",
-          horario: ["Lunes a viernes: 9:00 a.m. – 8:00 p.m.", "Sábado: 9:00 a.m. – 2:00 p.m.", "Domingo: cerrado"],
+          horario: ["Lunes a viernes: 9:00\u00a0a.m.\u00a0–\u00a08:00\u00a0p.m.", "Sábado: 9:00\u00a0a.m.\u00a0–\u00a02:00\u00a0p.m.", "Domingo: cerrado"],
           mapa: ""                         // enlace exacto de Google Maps (opcional)
         },
         {
@@ -925,7 +926,7 @@
           referencia: "Antes de llegar a Salud Digna",
           telefono: "312 270 1111",
           whatsapp: "312 270 1111",
-          horario: ["Lunes a viernes: 8:30 a.m. – 8:00 p.m.", "Sábado: 8:30 a.m. – 3:00 p.m.", "Domingo: cerrado"],
+          horario: ["Lunes a viernes: 8:30\u00a0a.m.\u00a0–\u00a08:00\u00a0p.m.", "Sábado: 8:30\u00a0a.m.\u00a0–\u00a03:00\u00a0p.m.", "Domingo: cerrado"],
           mapa: ""
         }
       ]
@@ -1190,7 +1191,7 @@
     $("#sucursales").innerHTML = CONFIG.sucursales.map((s, k) => {
       const filas = [
         `<div class="dato">${ICO.pin}<div><dt>Dirección</dt><dd>${escapar(s.direccion)}${s.referencia ? `<small>${escapar(s.referencia)}</small>` : ""}</dd></div></div>`,
-        `<div class="dato">${ICO.reloj}<div><dt>Horario</dt><dd>${s.horario && s.horario.length ? s.horario.map(escapar).join("<br>") : pendiente("[Agregar horario]")}</dd></div></div>`
+        `<div class="dato">${ICO.reloj}<div><dt>Horario</dt><dd>${s.horario && s.horario.length ? s.horario.map((h) => { const k = h.indexOf(": "); return k > 0 ? `${escapar(h.slice(0, k + 1))} <span style="white-space:nowrap">${escapar(h.slice(k + 2))}</span>` : escapar(h); }).join("<br>") : pendiente("[Agregar horario]")}</dd></div></div>`
       ];
       if (s.telefono) filas.push(`<div class="dato">${ICO.tel}<div><dt>Teléfono</dt><dd><a href="${telHref(s.telefono)}">${escapar(s.telefono)}</a></dd></div></div>`);
       if (s.whatsapp) filas.push(`<div class="dato">${ICO.wa}<div><dt>WhatsApp</dt><dd><a href="${urlWA(msgGeneral, s.whatsapp)}" target="_blank" rel="noopener">${escapar(s.whatsapp)}</a></dd></div></div>`);
