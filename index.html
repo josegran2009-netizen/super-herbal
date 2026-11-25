@@ -21,13 +21,14 @@
   <meta property="og:description" content="Productos de la marca Super Herbal, atención personalizada y envíos a domicilio.">
   <meta property="og:url" content="https://[AGREGAR-DOMINIO]/">
 
-  <!-- Datos estructurados para Google (negocio local). Agrega "openingHours" cuando lo confirmes. -->
+  <!-- Datos estructurados para Google (negocio local). Incluye las dos sucursales con su horario. -->
   <script type="application/ld+json">
+  [
   {
     "@context": "https://schema.org",
     "@type": "Store",
-    "name": "Tienda Naturista Super Herbal",
-    "description": "Tienda naturista en Villa de Álvarez y Colima con productos de la marca Super Herbal. Envíos a domicilio.",
+    "name": "Tienda Naturista Super Herbal – Villa de Álvarez",
+    "description": "Tienda naturista con productos de la marca Super Herbal. Envíos a domicilio.",
     "telephone": "+52 312 270 1111",
     "address": {
       "@type": "PostalAddress",
@@ -37,9 +38,28 @@
       "postalCode": "28970",
       "addressCountry": "MX"
     },
+    "openingHours": ["Mo-Fr 09:00-20:00", "Sa 09:00-14:00"],
+    "sameAs": ["https://www.instagram.com/tiendanaturistasuperherbal/"],
+    "brand": { "@type": "Brand", "name": "Super Herbal" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Tienda Naturista Super Herbal – Colima Centro",
+    "description": "Tienda naturista con productos de la marca Super Herbal. Envíos a domicilio.",
+    "telephone": "+52 312 270 1111",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. San Fernando #300, Local 3",
+      "addressLocality": "Colima",
+      "addressRegion": "Colima",
+      "addressCountry": "MX"
+    },
+    "openingHours": ["Mo-Fr 08:30-20:00", "Sa 08:30-15:00"],
     "sameAs": ["https://www.instagram.com/tiendanaturistasuperherbal/"],
     "brand": { "@type": "Brand", "name": "Super Herbal" }
   }
+  ]
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -409,6 +429,15 @@
     .detalle-info h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom: .6rem; }
     .detalle-desc { color: var(--texto-suave); font-size: 1.05rem; }
     .ficha { margin: 1.2rem 0 1.4rem; display: grid; gap: .75rem; }
+    .detalle-media { display: grid; gap: 1rem; align-content: start; min-width: 0; }
+    .usos { background: var(--blanco); border: 1px solid var(--borde); border-radius: 20px; padding: 1.15rem 1.25rem 1.05rem; }
+    .usos h3 { display: flex; align-items: center; gap: .5rem; font-size: 1.15rem; color: var(--tinta); margin: 0 0 .7rem; }
+    .usos h3 svg { width: 1.2em; height: 1.2em; color: var(--verde-hoja); flex: none; }
+    .usos ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+    .usos li { position: relative; padding-left: 1.7rem; font-size: .97rem; line-height: 1.45; color: var(--texto); }
+    .usos li::before { content: ""; position: absolute; left: 0; top: .2em; width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--verde-suave) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232E7D32' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 70% no-repeat; }
+    .usos-nota { margin: .9rem 0 0; padding: .65rem .8rem; border-radius: 12px; background: #FFF6D6; border: 1px solid #F2DB8C; color: #5C4A00; font-size: .9rem; line-height: 1.4; }
+    .usos-aviso { margin: .8rem 0 0; font-size: .8rem; color: var(--texto-suave); line-height: 1.4; }
     .ficha > div { background: var(--blanco); border: 1px solid var(--borde); border-radius: 14px; padding: .85rem 1rem; }
     .ficha dt { font-size: .76rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--verde-hoja); margin-bottom: .25rem; }
     .ficha dd { margin: 0; font-size: .97rem; color: var(--texto); }
@@ -434,6 +463,24 @@
     .cara-logo { display: grid; place-items: center; align-content: center; gap: .8rem; background: linear-gradient(160deg, var(--azul), var(--tinta)); color: #fff; text-align: center; padding: 1.5rem; }
     .cara-logo img { width: 52%; height: auto; border-radius: 50%; box-shadow: 0 0 0 5px rgba(255,255,255,.8); }
     .cara-logo span { font-family: var(--fuente-titulos); font-weight: 800; font-size: 1.3rem; }
+    .visor-escena { position: relative; }
+    .visor-gl { display: block; position: relative; z-index: 1; touch-action: pan-y; }
+    /* Frasco 3D: cilindro de tiras con la etiqueta real envuelta, hombro, tapa y discos */
+    .botella .tira { position: absolute; left: 50%; top: 50%; backface-visibility: hidden; -webkit-backface-visibility: hidden; background-color: #EDF0F0; }
+    .botella-luz { position: absolute; left: 50%; top: 50%; pointer-events: none;
+      background: linear-gradient(90deg, rgba(20,32,52,.42) 0%, rgba(20,32,52,.16) 9%, rgba(20,32,52,.03) 24%, rgba(20,32,52,0) 40%, rgba(20,32,52,0) 58%, rgba(20,32,52,.1) 78%, rgba(20,32,52,.3) 93%, rgba(20,32,52,.48) 100%); }
+    .botella .t-cuerpo { background-image: var(--tex); background-repeat: repeat-x; }
+    .botella .t-hombro { background: linear-gradient(180deg, #F7F8F8, #E9ECEC); }
+    .botella .t-tapa { background: linear-gradient(180deg, transparent 0 84%, rgba(0,0,0,.07) 84% 87%, transparent 87%), repeating-linear-gradient(90deg, #F8F9F9 0 2px, #D7DBDB 2px 3px); }
+    .botella .t-tapa.alta { background: linear-gradient(180deg, #F6F7F7 0 26%, #DADEDE 26% 29%, transparent 29%), linear-gradient(90deg, #E9ECEC 0 18%, #FFFFFF 30% 62%, #D2D7D7 76% 100%); }
+    .botella .disco { position: absolute; left: 50%; top: 50%; border-radius: 50%; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .botella .d-tapa { background: radial-gradient(circle, #FFFFFF 0 40%, #EEF0F0 62%, #D9DDDD 100%); }
+    .botella .d-tapa.alta { background: radial-gradient(circle, #F3F5F5 0 52%, #CFD4D4 54% 58%, #FBFBFB 60% 90%, #DADEDE 100%); }
+    .botella .d-fondo { background: #D8DCDC; }
+    .botella-brillo { position: absolute; left: 50%; top: 50%; pointer-events: none; border-radius: 6px;
+      background: linear-gradient(90deg, transparent 0 14%, rgba(255,255,255,.42) 24%, transparent 36%, transparent 82%, rgba(255,255,255,.16) 89%, transparent 95%); }
+    .visor-sombra { position: absolute; left: 50%; height: 24px; transform: translate(-50%,-50%); border-radius: 50%; pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(14,33,72,.32), rgba(14,33,72,0) 70%); }
     .visor-pie { position: absolute; left: 0; right: 0; bottom: .6rem; display: flex; align-items: center; justify-content: center; gap: .5rem; }
     .visor-pie button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--borde); background: #fff; color: var(--tinta); cursor: pointer; display: grid; place-items: center; transition: background-color .2s ease, transform .2s ease; }
     .visor-pie button:hover { background: var(--amarillo-suave); transform: translateY(-1px); }
@@ -855,28 +902,30 @@
     const CONFIG = {
       nombre: "Tienda Naturista Super Herbal",
       telefono: "312 270 1111",          // teléfono principal (Facebook)
-      whatsapp: "312 125 2834",          // número que aparece con WhatsApp en los carteles. Confirmar.
-      horario: "",                       // ej. "Lun a Sáb 9:00–20:00"
+      whatsapp: "312 270 1111",          // número de WhatsApp para pedidos e información.
+      // Los horarios van en cada sucursal (abajo).
       instagram: "https://www.instagram.com/tiendanaturistasuperherbal/",
       facebook: "",                      // pega aquí el enlace de la página de Facebook
 
       sucursales: [
         {
           nombre: "Villa de Álvarez",
-          etiqueta: "Centro",
+          etiqueta: "Sucursal",
           direccion: "Av. Gral. Manuel Álvarez 30, Centro, 28970 Cdad. de Villa de Álvarez, Col.",
           referencia: "",
           telefono: "312 270 1111",
           whatsapp: "",
+          horario: ["Lunes a viernes: 9:00 a.m. – 8:00 p.m.", "Sábado: 9:00 a.m. – 2:00 p.m.", "Domingo: cerrado"],
           mapa: ""                         // enlace exacto de Google Maps (opcional)
         },
         {
-          nombre: "Colima",
-          etiqueta: "San Fernando",
+          nombre: "Colima Centro",
+          etiqueta: "Sucursal",
           direccion: "Av. San Fernando #300, Local 3, Colima, Col.",
           referencia: "Antes de llegar a Salud Digna",
-          telefono: "",
-          whatsapp: "312 125 2834",
+          telefono: "312 270 1111",
+          whatsapp: "312 270 1111",
+          horario: ["Lunes a viernes: 8:30 a.m. – 8:00 p.m.", "Sábado: 8:30 a.m. – 3:00 p.m.", "Domingo: cerrado"],
           mapa: ""
         }
       ]
@@ -897,6 +946,8 @@
        - categoria: id de una sección de CATEGORIAS.
        - foto / masFotos: nombres del bloque IMÁGENES (al final) o rutas propias.
          masFotos agrega caras al visor giratorio (lados, atrás...).
+       - modelo3d: frasco en 3D. "tex" es la etiqueta completa desenrollada
+         (hecha con las fotos de frente y de los lados); asp = alto/ancho de esa imagen.
        - ficha: filas de información. Ingredientes, modo de uso y advertencias
          aparecen como pendientes hasta que se agreguen.
        - Sin promesas de salud (no "cura", "trata", "quita", "elimina", "previene").
@@ -906,6 +957,8 @@
       {
         categoria: "linea-sh", codigo: "SH-07",
         nombre: "Súper Berberina Complex",
+        usos: ["La berberina y la canela se han estudiado por su relación con el nivel de azúcar (glucosa) en la sangre.", "El cromo, el zinc y el magnesio participan en el aprovechamiento de los carbohidratos de los alimentos.", "El ácido alfa lipóico y la vitamina E son antioxidantes: ayudan a proteger las células del desgaste."],
+        usosNota: "Si tomas medicamento para el azúcar, consulta a tu médico antes de usarla, porque la berberina puede sumarse a su efecto.",
         presentaciones: ["35 cápsulas"],
         descripcion: "Suplemento alimenticio a base de canela, berberina HCl y ácido alfa lipóico, adicionado con vitamina E, magnesio, zinc y cromo.",
         foto: "sh07-frente",
@@ -922,55 +975,88 @@
       {
         categoria: "linea-sh", codigo: "SH-08",
         nombre: "Super Magnesio Complex",
+        usos: ["El magnesio es necesario para el funcionamiento normal de los músculos y los nervios.", "Participa en la formación de huesos y dientes.", "Muchas enzimas del cuerpo lo necesitan para funcionar.", "Combina 7 formas de magnesio: citrato, glicinato, bisglicinato, malato, taurato, treonato y óxido."],
+        usosNota: "Si tienes algún problema de los riñones, consulta a tu médico antes de tomar magnesio.",
         presentaciones: ["60 cápsulas · 500 mg c/u"],
         descripcion: "Suplemento alimenticio. Extracto mineral.",
         foto: "sh08-frente",
         masFotos: ["magnesio-complex"],
-        ficha: [{ t: "Presentación", v: "60 cápsulas de 500 mg c/u" }]
+        ficha: [
+          { t: "Presentación", v: "60 cápsulas de 500 mg c/u. Porción: 1 cápsula · 60 porciones por envase." },
+          { t: "Ingredientes (según etiqueta)", v: "Citrato de magnesio, óxido de magnesio, malato de magnesio, taurato de magnesio, treonato de magnesio, glicinato de magnesio y bisglicinato de magnesio." },
+          { t: "Contenido por porción (1 cápsula)", v: ["Glicinato de magnesio: 90 mg", "Malato de magnesio: 90 mg", "Taurato de magnesio: 90 mg", "Citrato de magnesio: 90 mg", "Bisglicinato de magnesio: 90 mg", "Treonato de magnesio: 90 mg", "Óxido de magnesio: 90 mg", "Magnesio elemental: 449 mg"] },
+          { t: "Modo de uso (según etiqueta)", v: "Tomar 1 cápsula cada 12 horas después de los alimentos. No exceda la porción recomendada por día." },
+          { t: "Advertencias (según etiqueta)", v: ["No se use durante el embarazo o lactancia.", "No se deje al alcance de los niños.", "Consérvese el frasco bien tapado en un lugar fresco y seco.", "No se use si el sello de seguridad está roto.", "Empacado en líneas donde se procesan productos que pueden contener trazas de soya, leche, trigo y maíz.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa."] }
+        ]
       },
       {
         categoria: "linea-sh", codigo: "SH-11",
         nombre: "Silimariano y Alcachofa",
+        usos: ["El cardo mariano (silimarina) se ha usado por siglos para el cuidado del hígado.", "La alcachofa se usa tradicionalmente para la digestión, como la sensación de pesadez después de comer.", "El boldo y el diente de león son plantas de uso tradicional para la digestión.", "Reforzado con cúrcuma."],
         nuevo: "Nueva presentación",
         presentaciones: ["100 cápsulas · 500 mg c/u"],
         descripcion: "Silimariano y alcachofa, reforzado con cúrcuma.",
         foto: "sh11-silimariano",
         ficha: [
           { t: "Presentación", v: "100 cápsulas de 500 mg c/u" },
+          { t: "Ingredientes (según etiqueta)", v: "Cardo mariano (silimarina al 80%), alcachofa (Cynara scolymus), boldo, diente de león y cúrcuma." },
+          { t: "Cantidades por cápsula (según etiqueta)", v: ["Cardo mariano (silimarina al 80%): 200 mg", "Alcachofa: 400 mg", "Boldo: 40 mg", "Diente de león: 40 mg", "Cúrcuma: 20 mg"] },
+          { t: "Modo de uso (según etiqueta)", v: "Tomar 2 cápsulas tres veces al día." },
+          { t: "Advertencias (según etiqueta)", v: ["Este producto no es un medicamento.", "No se administre durante el embarazo ni en la lactancia.", "Consérvese en lugar fresco y seco.", "No se deje al alcance de los niños.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.", "Practique el ejercicio y visite regularmente a su médico."] },
           { t: "En la etiqueta", v: "Reforzado con cúrcuma. ¡Nueva presentación!" }
         ]
       },
       {
         categoria: "linea-sh", codigo: "SH-14",
         nombre: "BU-PRO",
+        usos: ["El saw palmetto, la ortiga y el licopeno se usan para el bienestar de la próstata y las vías urinarias del hombre.", "Los cabellos de elote, el enebro y la hierba del sapo se usan en la herbolaria como diuréticos (ayudan a orinar).", "El té verde y el brócoli aportan antioxidantes.", "La uña de gato se usa tradicionalmente para apoyar las defensas del cuerpo."],
+        usosNota: "Si tienes molestias al orinar, consulta a tu médico. Este producto no sustituye una revisión de la próstata.",
         presentaciones: ["90 cápsulas · 1 g c/u"],
         descripcion: "Suplemento alimenticio.",
         foto: "sh14-bu-pro",
-        ficha: [{ t: "Presentación", v: "90 cápsulas de 1 g c/u" }]
+        ficha: [
+          { t: "Presentación", v: "90 cápsulas de 1 g c/u. Porción: 1 cápsula · 90 porciones por frasco." },
+          { t: "Ingredientes (según etiqueta)", v: "Saw palmetto (Serenoa repens), uña de gato (Uncaria tomentosa), licopeno (Lycopersicum esculentum), ortiga (Urtica dioica), brócoli (Brassica oleracea L.), té verde (Camellia sinensis), cabellos de elote (Zea mays), enebro (Juniperus communis), hierba del sapo (Eryngium), fenogreco (Trigonella foenum-graecum) y árnica (Arnica montana)." },
+          { t: "Modo de uso (según etiqueta)", v: "Tomar una cápsula en cada comida." },
+          { t: "Advertencias (según etiqueta)", v: ["Manténgase en lugar fresco y seco.", "No se deje al alcance de los niños.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.", "Este producto no es un medicamento."] }
+        ]
       },
       {
         categoria: "linea-sh", codigo: "SH-15",
         nombre: "BO-PRO",
+        usos: ["El saw palmetto, la ortiga y el licopeno se usan para el bienestar de la próstata y las vías urinarias del hombre.", "El cuachalalate es una corteza de la herbolaria mexicana usada tradicionalmente para el cuidado del estómago.", "Los cabellos de elote se usan en la herbolaria como diurético (ayudan a orinar).", "El té verde y el brócoli aportan antioxidantes."],
+        usosNota: "Si tienes molestias al orinar, consulta a tu médico. Este producto no sustituye una revisión de la próstata.",
         presentaciones: ["60 capletas · 760 mg c/u"],
         descripcion: "Con saw palmetto, uña de gato, licopeno, ortiga, brócoli y té verde.",
         foto: "sh15-bo-pro",
         ficha: [
-          { t: "Presentación", v: "60 capletas de 760 mg c/u" },
-          { t: "En la etiqueta frontal", v: "Saw palmetto, uña de gato, licopeno, ortiga, brócoli, té verde." }
+          { t: "Presentación", v: "60 capletas de 760 mg c/u (contenido neto 45.6 g). Porción: 2 capletas · 30 porciones por frasco." },
+          { t: "Ingredientes (según etiqueta)", v: "Saw palmetto (Serenoa repens), uña de gato (Uncaria tomentosa), licopeno (Lycopersicum esculentum), ortiga (Urtica dioica), brócoli (Brassica oleracea L.), té verde (Camellia sinensis), cuachalalate (Juliania adstringens) y cabellos de elote (Zea mays, estigmas)." },
+          { t: "Modo de uso (según etiqueta)", v: "Tomar 2 capletas al día (1 cada 12 horas)." },
+          { t: "Advertencias (según etiqueta)", v: ["Manténgase en lugar fresco y seco.", "No se deje al alcance de los niños.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.", "Practique el ejercicio y visite regularmente a su médico."] }
         ]
       },
       {
         categoria: "linea-sh", codigo: "SH-16",
         nombre: "ONK-TR",
+        usos: ["Combina 12 ingredientes de la herbolaria tradicional, varios de ellos mexicanos, como el cuachalalate, la cancerina y el etcho.", "La uña de gato se usa tradicionalmente para apoyar las defensas del cuerpo.", "El cuachalalate y la cancerina son cortezas que la medicina tradicional mexicana usa para el cuidado del estómago.", "El ajo, la cebolla, el diente de león y la milenrama son plantas de uso tradicional en la herbolaria."],
+        usosNota: "No sustituye ningún tratamiento médico. Si estás en tratamiento o tomas medicamentos, consulta a tu médico antes de usarlo.",
         presentaciones: ["60 cápsulas · 500 mg c/u"],
         descripcion: "Suplemento alimenticio.",
         foto: "sh16-onk-tr",
-        ficha: [{ t: "Presentación", v: "60 cápsulas de 500 mg c/u" }]
+        ficha: [
+          { t: "Presentación", v: "60 cápsulas de 500 mg (contenido neto 30 g). Porción: 1 cápsula · 60 porciones por frasco." },
+          { t: "Ingredientes (según etiqueta)", v: "Cartílago de tiburón, uña de gato (Uncaria tomentosa), cardo bendito (Cnicus benedictus L.), cancerina (Semialarium mexicanum), ajo (Allium sativum L.), cebolla (Allium cepa), milenrama (Achillea millefolium), amargón (Taraxacum officinale), cuachalalate (Amphipterygium adstringens), consuelda menor (Prunella vulgaris), etcho (Pachycereus pecten-aboriginum) y nogal (Juglans regia)." },
+          { t: "Modo de uso (según etiqueta)", v: "Tomar 2 cápsulas cada 6 horas." },
+          { t: "Advertencias (según etiqueta)", v: ["Este producto no es un medicamento.", "Consérvese en lugar fresco y seco.", "No se deje al alcance de los niños.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.", "Practique el ejercicio y visite regularmente a su médico."] }
+        ]
       },
       // ---------- Citratos ----------
       {
         categoria: "citratos",
         nombre: "Super Citrato de Magnesio",
+        usos: ["El magnesio es necesario para el funcionamiento normal de los músculos y los nervios.", "Participa en la formación de huesos y dientes.", "Muchas enzimas del cuerpo lo necesitan para funcionar."],
+        usosNota: "Si tienes algún problema de los riñones, consulta a tu médico antes de tomar magnesio.",
         presentaciones: ["30 tabletas · 750 mg c/u"],
         descripcion: "Suplemento alimenticio.",
         foto: "citrato-magnesio",
@@ -979,6 +1065,8 @@
       {
         categoria: "citratos",
         nombre: "Super Citrato de Potasio",
+        usos: ["El potasio es un mineral que el cuerpo necesita para el funcionamiento de los músculos, los nervios, el corazón y los riñones.", "Ayuda a mantener el equilibrio de líquidos dentro de las células."],
+        usosNota: "Si tienes algún problema de los riñones o tomas medicamento para la presión, consulta a tu médico antes de usarlo: el exceso de potasio puede ser peligroso.",
         presentaciones: ["30 tabletas · 700 mg c/u"],
         descripcion: "Suplemento alimenticio.",
         foto: "citrato-potasio",
@@ -1054,6 +1142,7 @@
       tel: svg('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>'),
       pin: svg('<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>'),
       reloj: svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+      hoja: svg('<path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15"/><path d="M5 19l7-7"/>'),
       wa: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.5-.3z"/></svg>',
       camion: svg('<path d="M1 4h13v11H1z"/><path d="M14 8h4l4 4v3h-8z"/><circle cx="5.5" cy="17.5" r="2"/><circle cx="17.5" cy="17.5" r="2"/>'),
       ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>',
@@ -1101,7 +1190,7 @@
     $("#sucursales").innerHTML = CONFIG.sucursales.map((s, k) => {
       const filas = [
         `<div class="dato">${ICO.pin}<div><dt>Dirección</dt><dd>${escapar(s.direccion)}${s.referencia ? `<small>${escapar(s.referencia)}</small>` : ""}</dd></div></div>`,
-        `<div class="dato">${ICO.reloj}<div><dt>Horario</dt><dd>${CONFIG.horario ? escapar(CONFIG.horario) : pendiente("[Agregar horario]")}</dd></div></div>`
+        `<div class="dato">${ICO.reloj}<div><dt>Horario</dt><dd>${s.horario && s.horario.length ? s.horario.map(escapar).join("<br>") : pendiente("[Agregar horario]")}</dd></div></div>`
       ];
       if (s.telefono) filas.push(`<div class="dato">${ICO.tel}<div><dt>Teléfono</dt><dd><a href="${telHref(s.telefono)}">${escapar(s.telefono)}</a></dd></div></div>`);
       if (s.whatsapp) filas.push(`<div class="dato">${ICO.wa}<div><dt>WhatsApp</dt><dd><a href="${urlWA(msgGeneral, s.whatsapp)}" target="_blank" rel="noopener">${escapar(s.whatsapp)}</a></dd></div></div>`);
@@ -1270,15 +1359,192 @@
     filtrar();
 
     // ---------- Visor giratorio (arrastrar para girar, giro lento automático) ----------
-    function crearVisor(raiz) {
+    /* Visor WebGL para el escaneo 3D: malla generada a partir del mapa de radios del escaneo
+       (alto × vuelta) y la textura real desenrollada. Devuelve null si no hay WebGL. */
+    function crearEscaneo(raiz, anillo, esc) {
+      const lienzo = document.createElement("canvas");
+      lienzo.className = "visor-gl";
+      let gl = null;
+      try { gl = lienzo.getContext("webgl", { antialias: true, alpha: true }); } catch (_) {}
+      if (!gl) return null;
+      const NT = esc.nt, NH = esc.nh;
+      const datos = Uint8Array.from(atob(imagen(esc.radios).split(",")[1]), (c) => c.charCodeAt(0));
+      const radio = (i, j) => esc.rmin + ((esc.rmax - esc.rmin) * datos[i * NT + (((j % NT) + NT) % NT)]) / 255;
+      const P = [], T = [], I = [];
+      const cols = NT + 1;
+      for (let i = 0; i < NH; i++) {
+        const v = (i + 0.5) / NH, y = 0.5 - v;
+        for (let j = 0; j <= NT; j++) {
+          const u = (j + 0.5) / NT, th = Math.PI - 2 * Math.PI * u, r = radio(i, j);
+          P.push(r * Math.cos(th), y, r * Math.sin(th)); T.push(u, v);
+        }
+      }
+      for (let i = 0; i < NH - 1; i++) for (let j = 0; j < NT; j++) {
+        const a = i * cols + j, b = a + 1, c = a + cols, d = c + 1;
+        I.push(a, c, b, b, c, d);
+      }
+      // tapa (arriba) y fondo: abanicos con color liso
+      const tapas = (fila, y) => {
+        const centro = P.length / 3; P.push(0, y, 0); T.push(-1, -1);
+        const ini = P.length / 3;
+        for (let j = 0; j <= NT; j++) { const k = (fila * cols + j) * 3; P.push(P[k], y, P[k + 2]); T.push(-1, -1); }
+        for (let j = 0; j < NT; j++) fila === 0 ? I.push(centro, ini + j + 1, ini + j) : I.push(centro, ini + j, ini + j + 1);
+      };
+      const ySup = 0.5 - 0.5 / NH, yInf = 0.5 - (NH - 0.5) / NH;
+      tapas(0, ySup); tapas(NH - 1, yInf);
+      // normales por promedio de caras
+      const nv = P.length / 3, N = new Float32Array(nv * 3);
+      for (let k = 0; k < I.length; k += 3) {
+        const a = I[k] * 3, b = I[k + 1] * 3, c = I[k + 2] * 3;
+        const ux = P[b] - P[a], uy = P[b + 1] - P[a + 1], uz = P[b + 2] - P[a + 2];
+        const vx = P[c] - P[a], vy = P[c + 1] - P[a + 1], vz = P[c + 2] - P[a + 2];
+        const nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
+        for (const q of [a, b, c]) { N[q] += nx; N[q + 1] += ny; N[q + 2] += nz; }
+      }
+      // las caras laterales se orientan hacia afuera
+      for (let q = 0; q < nv; q++) {
+        const o = q * 3, len = Math.hypot(N[o], N[o + 1], N[o + 2]) || 1;
+        N[o] /= len; N[o + 1] /= len; N[o + 2] /= len;
+      }
+      let chequeo = 0;
+      for (let q = 0; q < NH * cols; q += 97) chequeo += N[q * 3] * P[q * 3] + N[q * 3 + 2] * P[q * 3 + 2];
+      if (chequeo < 0) for (let q = 0; q < nv * 3; q++) N[q] = -N[q];
+
+      const sh = (tipo, src) => { const o = gl.createShader(tipo); gl.shaderSource(o, src); gl.compileShader(o); return o; };
+      const prog = gl.createProgram();
+      gl.attachShader(prog, sh(gl.VERTEX_SHADER, `
+        attribute vec3 p; attribute vec3 n; attribute vec2 t;
+        uniform mat4 mvp; uniform mat4 rot;
+        varying vec3 vn; varying vec2 vt;
+        void main(){ vn = (rot*vec4(n,0.)).xyz; vt = t; gl_Position = mvp*vec4(p,1.); }`));
+      gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, `
+        precision mediump float;
+        varying vec3 vn; varying vec2 vt; uniform sampler2D tex; uniform float listo;
+        void main(){
+          vec3 n = normalize(vn);
+          vec3 base = vt.x < -.5 ? vec3(.95,.955,.955) : mix(vec3(.93), texture2D(tex, vt).rgb, listo);
+          vec3 L = normalize(vec3(-.45,.55,.8));
+          float d = max(dot(n,L),0.);
+          float s = pow(max(dot(n, normalize(L+vec3(0.,0.,1.))),0.),38.)*.16;
+          float borde = 1. - max(n.z,0.);
+          vec3 c = base*(.8 + .26*d)*(1. - .28*pow(borde,3.)) + s;
+          gl_FragColor = vec4(c,1.);
+        }`));
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
+      gl.useProgram(prog);
+      const buf = (datos, att, tam) => {
+        const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, datos, gl.STATIC_DRAW);
+        const loc = gl.getAttribLocation(prog, att); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, tam, gl.FLOAT, false, 0, 0);
+      };
+      buf(new Float32Array(P), "p", 3); buf(N, "n", 3); buf(new Float32Array(T), "t", 2);
+      const ib = gl.createBuffer(); gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ib); gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(I), gl.STATIC_DRAW);
+      const uMvp = gl.getUniformLocation(prog, "mvp"), uRot = gl.getUniformLocation(prog, "rot"), uListo = gl.getUniformLocation(prog, "listo");
+      gl.uniform1f(uListo, 0);
+      const textura = gl.createTexture();
+      const img = new Image();
+      img.onload = () => {
+        gl.bindTexture(gl.TEXTURE_2D, textura);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, img);
+        gl.generateMipmap(gl.TEXTURE_2D);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        const an = gl.getExtension("EXT_texture_filter_anisotropic");
+        if (an) gl.texParameterf(gl.TEXTURE_2D, an.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(8, gl.getParameter(an.MAX_TEXTURE_MAX_ANISOTROPY_EXT)));
+        gl.uniform1f(uListo, 1);
+      };
+      img.src = imagen(esc.tex);
+      gl.enable(gl.DEPTH_TEST); gl.enable(gl.CULL_FACE);
+      const escena = anillo.parentElement;
+      anillo.style.display = "none";
+      escena.querySelectorAll(".botella-luz, .botella-brillo").forEach((e) => e.remove());
+      escena.insertBefore(lienzo, anillo);
+      const sombra = escena.querySelector(".visor-sombra");
+
+      const mult = (a, b) => { const o = new Float32Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
+      const rotYm = (a) => { const c = Math.cos(a), s = Math.sin(a); return new Float32Array([c, 0, -s, 0, 0, 1, 0, 0, s, 0, c, 0, 0, 0, 0, 1]); };
+      const rotXm = (a) => { const c = Math.cos(a), s = Math.sin(a); return new Float32Array([1, 0, 0, 0, 0, c, s, 0, 0, -s, c, 0, 0, 0, 0, 1]); };
+      let proy = null, vista = null, lado = 0;
+      return {
+        medir(ancho) {
+          const dpr = Math.min(2, window.devicePixelRatio || 1);
+          lado = ancho;
+          lienzo.width = Math.round(ancho * dpr); lienzo.height = Math.round(ancho * dpr);
+          lienzo.style.width = lienzo.style.height = ancho + "px";
+          gl.viewport(0, 0, lienzo.width, lienzo.height);
+          const f = 1 / Math.tan((28 * Math.PI) / 360), cerca = 0.1, lejos = 10;
+          proy = new Float32Array([f, 0, 0, 0, 0, f, 0, 0, 0, 0, (lejos + cerca) / (cerca - lejos), -1, 0, 0, (2 * lejos * cerca) / (cerca - lejos), 0]);
+          vista = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.01, -2.45, 1]);
+          if (sombra) sombra.style.cssText = `width:${(ancho * 0.5).toFixed(1)}px;top:calc(50% + ${(ancho * 0.41).toFixed(1)}px)`;
+        },
+        dibujar(rx, ry) {
+          if (!proy) return;
+          const rot = mult(rotXm((-rx * Math.PI) / 180), rotYm(((ry + esc.frente) * Math.PI) / 180));
+          gl.uniformMatrix4fv(uMvp, false, mult(proy, mult(vista, rot)));
+          gl.uniformMatrix4fv(uRot, false, rot);
+          gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+          gl.drawElements(gl.TRIANGLES, I.length, gl.UNSIGNED_SHORT, 0);
+        },
+        destruir() { const e = gl.getExtension("WEBGL_lose_context"); if (e) e.loseContext(); }
+      };
+    }
+
+    function crearVisor(raiz, prod) {
       const anillo = raiz.querySelector(".visor-anillo");
-      const caras = [...anillo.children];
+      const m3d = prod && prod.modelo3d && anillo.classList.contains("botella") ? prod.modelo3d : null;
+      const caras = m3d ? [] : [...anillo.children];
       const N = caras.length;
-      let ancho = 340, fondoZ = 0, rotY = -28, rotX = 0, vel = 0, pausa = false, arrastrando = false;
+      const reposoX = m3d ? -11 : 0;
+      const gl3d = m3d && prod.escaneo ? crearEscaneo(raiz, anillo, prod.escaneo) : null;
+      let ancho = 340, fondoZ = 0, rotY = m3d ? -22 : -28, rotX = reposoX, vel = 0, pausa = false, arrastrando = false;
+
+      // Construye el frasco 3D: la etiqueta real (desenrollada de las fotos) envuelve un cilindro.
+      const construirBotella = () => {
+        const w = ancho, asp = m3d.asp, alta = m3d.tapa === "alta";
+        const capR = m3d.alto || .6, mT = m3d.arriba ?? .2, mB = m3d.abajo ?? .1, hom = .2;
+        const R = Math.min(.31 * w, .84 * w / (2 * Math.PI * asp + mT + mB + hom + capR));
+        const C = 2 * Math.PI * R, LH = C * asp, BH = LH + (mT + mB) * R, SH = hom * R, CH = capR * R;
+        const Rn = .8 * R, Rc = (alta ? .88 : .86) * R, T = BH + SH + CH, y0 = -T / 2;
+        const yCap = y0 + CH / 2, ySh = y0 + CH + SH / 2, yBody = y0 + CH + SH + BH / 2, yFin = y0 + T;
+        const NB = 48, NC = 40;
+        const px = (n) => n.toFixed(2) + "px";
+        const html = [];
+        const sw = 2 * R * Math.tan(Math.PI / NB) * 1.09;
+        const hS = Math.hypot(SH, R - Rn), fi = Math.atan2(R - Rn, SH) * 180 / Math.PI;
+        for (let i = 0; i < NB; i++) {
+          const a = (i * 360) / NB;
+          const u = (a + 180) / 360;
+          html.push(`<div class="tira t-cuerpo" data-a="${a}" style="width:${px(sw)};height:${px(BH + 1)};transform:translate(-50%,-50%) translateY(${px(yBody)}) rotateY(${a}deg) translateZ(${px(R)});background-size:${px(NB * sw)} ${px(LH)};background-position:${px(sw / 2 - NB * sw * u)} ${px(mT * R)}"></div>`);
+          html.push(`<div class="tira t-hombro" data-a="${a}" style="width:${px(sw)};height:${px(hS + 1)};transform:translate(-50%,-50%) translateY(${px(ySh)}) rotateY(${a}deg) translateZ(${px((R + Rn) / 2)}) rotateX(${fi.toFixed(2)}deg)"></div>`);
+        }
+        const swc = 2 * Rc * Math.tan(Math.PI / NC) * 1.09;
+        for (let i = 0; i < NC; i++) {
+          const a = (i * 360) / NC;
+          html.push(`<div class="tira t-tapa${alta ? " alta" : ""}" data-a="${a}" style="width:${px(swc)};height:${px(CH)};transform:translate(-50%,-50%) translateY(${px(yCap)}) rotateY(${a}deg) translateZ(${px(Rc)})"></div>`);
+        }
+        html.push(`<div class="disco d-tapa${alta ? " alta" : ""}" style="width:${px(2 * Rc)};height:${px(2 * Rc)};transform:translate(-50%,-50%) translateY(${px(y0)}) rotateX(90deg)"></div>`);
+        html.push(`<div class="disco d-fondo" style="width:${px(2 * R)};height:${px(2 * R)};transform:translate(-50%,-50%) translateY(${px(yFin)}) rotateX(-90deg)"></div>`);
+        anillo.style.setProperty("--tex", `url("${imagen(m3d.tex)}")`);
+        anillo.innerHTML = html.join("");
+        // Luz fija (como en una foto de estudio): el cilindro siempre ocupa el mismo lugar en pantalla,
+        // así que el sombreado se pinta encima y no gira con el frasco.
+        const eb = (.2 * R).toFixed(1);
+        const luzCuerpo = raiz.querySelector(".luz-cuerpo"), luzTapa = raiz.querySelector(".luz-tapa");
+        luzCuerpo.style.cssText = `width:${px(2 * R + 1)};height:${px(BH + SH * .6)};transform:translate(-50%,-50%) translateY(${px(yBody - SH * .3 + 3)});border-radius:0 0 ${px(R)} ${px(R)} / 0 0 ${eb}px ${eb}px`;
+        luzTapa.style.cssText = `width:${px(2 * Rc + 1)};height:${px(CH)};transform:translate(-50%,-50%) translateY(${px(yCap + 2)});border-radius:0 0 ${px(Rc)} ${px(Rc)} / 0 0 ${eb}px ${eb}px`;
+        const brillo = raiz.querySelector(".botella-brillo");
+        brillo.style.cssText = `width:${px(2 * R)};height:${px(BH)};transform:translate(-50%,-50%) translateY(${px(yBody + 4)})`;
+        const sombra = raiz.querySelector(".visor-sombra");
+        sombra.style.cssText = `width:${px(2.5 * R)};top:calc(50% + ${px(yFin + 6)})`;
+      };
+
       let ultimoToque = -9999, ultimoX = 0, ultimoY = 0, ultimoT = 0, raf = 0, previo = 0;
       const medir = () => {
         ancho = Math.max(220, Math.min(raiz.clientWidth - 32, 440));
         raiz.style.setProperty("--w", ancho + "px");
+        if (gl3d) { gl3d.medir(ancho); return; }
+        if (m3d) { fondoZ = 0; construirBotella(); return; }
         fondoZ = N === 2 ? 0 : ancho / 2 / Math.tan(Math.PI / N);
         caras.forEach((el, i) => {
           el.style.transform = N === 2 ? `rotateY(${i * 180}deg) translateZ(1px)` : `rotateY(${(i * 360) / N}deg) translateZ(${fondoZ}px)`;
@@ -1292,9 +1558,10 @@
           const objetivo = pausa || t - ultimoToque < 1400 ? 0 : (reducido ? 8 : 17);
           vel += (objetivo - vel) * (1 - Math.exp(-1.6 * dt));
           rotY += vel * dt;
-          rotX *= Math.exp(-2.5 * dt);
+          rotX = reposoX + (rotX - reposoX) * Math.exp(-2.5 * dt);
         }
-        anillo.style.transform = `translateZ(${-fondoZ}px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+        if (gl3d) gl3d.dibujar(rotX, rotY);
+        else anillo.style.transform = `translateZ(${-fondoZ}px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
       };
       const arrancar = () => { cancelAnimationFrame(raf); previo = performance.now(); raf = requestAnimationFrame(marco); };
       const visibilidad = () => (document.hidden ? cancelAnimationFrame(raf) : arrancar());
@@ -1310,7 +1577,7 @@
         const dt = Math.max(0.008, (ahora - ultimoT) / 1000);
         const dx = e.clientX - ultimoX, dy = e.clientY - ultimoY;
         rotY += dx * 0.55;
-        if (e.pointerType === "mouse") rotX = Math.max(-25, Math.min(25, rotX - dy * 0.25));
+        if (e.pointerType === "mouse") rotX = m3d ? Math.max(-24, Math.min(6, rotX - dy * 0.2)) : Math.max(-25, Math.min(25, rotX - dy * 0.25));
         vel = Math.max(-700, Math.min(700, vel * 0.5 + ((dx * 0.55) / dt) * 0.5));
         ultimoX = e.clientX; ultimoY = e.clientY; ultimoT = ahora;
       });
@@ -1338,7 +1605,7 @@
       ro.observe(raiz);
       document.addEventListener("visibilitychange", visibilidad);
       medir(); arrancar();
-      return { destruir() { cancelAnimationFrame(raf); ro.disconnect(); document.removeEventListener("visibilitychange", visibilidad); } };
+      return { destruir() { cancelAnimationFrame(raf); ro.disconnect(); if (gl3d) gl3d.destruir(); document.removeEventListener("visibilitychange", visibilidad); } };
     }
 
     // ---------- Ficha individual (#producto/nombre) ----------
@@ -1371,14 +1638,22 @@
           <button type="button" class="detalle-cerrar" data-cerrar aria-label="Cerrar">${ICO.x}</button>
         </div>
         <div class="detalle-grid">
+          <div class="detalle-media">
           <div class="visor" tabindex="0" role="group" aria-label="Vista giratoria de ${escapar(p.nombre)}. Arrastra para girarlo o usa las flechas del teclado.">
             <p class="visor-ayuda">Arrastra para girar el producto</p>
-            <div class="visor-escena"><div class="visor-anillo">${caras.join("")}</div></div>
+            ${p.modelo3d ? `<div class="visor-escena"><div class="visor-sombra" aria-hidden="true"></div><div class="visor-anillo botella"></div><div class="botella-luz luz-cuerpo" aria-hidden="true"></div><div class="botella-luz luz-tapa" aria-hidden="true"></div><div class="botella-brillo" aria-hidden="true"></div></div>` : `<div class="visor-escena"><div class="visor-anillo">${caras.join("")}</div></div>`}
             <div class="visor-pie">
               <button type="button" data-v="izq" aria-label="Girar a la izquierda">${ICO.izq}</button>
               <button type="button" data-v="pausa" aria-pressed="false" aria-label="Pausar giro automático">${ICO.pausa}</button>
               <button type="button" data-v="der" aria-label="Girar a la derecha">${ICO.der}</button>
             </div>
+          </div>
+          <section class="usos" aria-labelledby="usos-titulo">
+            <h3 id="usos-titulo">${ICO.hoja || ""}¿Para qué se usa?</h3>
+            ${p.usos && p.usos.length ? `<ul>${p.usos.map((x) => `<li>${escapar(x)}</li>`).join("")}</ul>` : `<p>${pendiente("[Agregar para qué se usa cuando tengamos la lista de ingredientes de la etiqueta]")}</p>`}
+            ${p.usosNota ? `<p class="usos-nota">${escapar(p.usosNota)}</p>` : ""}
+            <p class="usos-aviso">Información general sobre sus ingredientes, según su uso tradicional y estudios publicados. Es un suplemento alimenticio, no un medicamento: no cura ni trata enfermedades.</p>
+          </section>
           </div>
           <div class="detalle-info">
             <p class="etiqueta">${escapar(catDe(p).nombre)}${p.codigo ? " · " + escapar(p.codigo) : ""}</p>
@@ -1395,7 +1670,7 @@
           <button type="button" data-ir="${ant._i}"><small>← Anterior</small><strong>${escapar(nombreCompleto(ant))}</strong></button>
           <button type="button" data-ir="${sig._i}"><small>Siguiente →</small><strong>${escapar(nombreCompleto(sig))}</strong></button>
         </nav>`;
-      visor = crearVisor($(".visor", dialogo));
+      visor = crearVisor($(".visor", dialogo), p);
       dialogo.scrollTop = 0;
     }
     function abrirFicha(i) {
