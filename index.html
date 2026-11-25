@@ -146,19 +146,15 @@
     /* ============================================================
        BARRA NARANJA DE ENVÍOS
        ============================================================ */
-    .barra-envios { background: linear-gradient(90deg, #FF8A00, var(--naranja)); color: var(--tinta); font-size: .9rem; font-weight: 700; }
-    .barra-envios .contenedor { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 36px; }
-    .barra-envios p { margin: 0; display: inline-flex; align-items: center; gap: .5rem; }
+    /* Barra naranja: el aviso recorre la pantalla de izquierda a derecha sin parar */
+    .barra-envios { position: relative; overflow: hidden; height: 36px; background: linear-gradient(90deg, #FF8A00, var(--naranja)); color: var(--tinta); font-size: .9rem; font-weight: 700; }
+    .barra-envios .marquesina { position: absolute; top: 0; left: 0; height: 100%; margin: 0; display: inline-flex; align-items: center; gap: .5rem; white-space: nowrap;
+      will-change: transform; animation: recorrer 15s linear infinite; }
     .barra-envios svg { width: 20px; height: 20px; flex: none; }
     .barra-envios .camion { animation: rodar 2.4s ease-in-out infinite; }
     @keyframes rodar { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
-    .barra-envios-links { display: flex; align-items: center; gap: 1rem; }
-    .barra-envios a { color: var(--tinta); text-decoration: none; display: inline-flex; align-items: center; gap: .35rem; }
-    .barra-envios a:hover { text-decoration: underline; }
-    @media (max-width: 700px) {
-      .barra-envios .contenedor { justify-content: center; }
-      .barra-envios .ocultar-movil { display: none; }
-    }
+    @keyframes recorrer { from { transform: translate3d(-100%,0,0); } to { transform: translate3d(100vw,0,0); } }
+    @media (max-width: 700px) { .barra-envios .marquesina { animation-duration: 9s; } }
 
     /* ============================================================
        ENCABEZADO VERDE
@@ -519,9 +515,10 @@
       position: fixed; inset: 0; z-index: 300; display: none; place-items: center; perspective: 1000px; cursor: pointer;
       /* Fondo desenfocado: es una foto ya desenfocada de la tienda (no se calcula en vivo),
          así la animación corre fluida incluso en computadoras sin aceleración gráfica. */
-      background-color: #DCEFC4; background-size: cover; background-position: center;
     }
-    .splash::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 46%, rgba(255,255,255,.62), rgba(214,236,186,.55) 60%, rgba(140,198,63,.45)); }
+    .splash::before { content: ""; position: absolute; inset: 0; transition: opacity .7s ease;
+      background: radial-gradient(circle at 50% 46%, rgba(255,255,255,.62), rgba(214,236,186,.55) 60%, rgba(140,198,63,.45)), var(--fondo, none) center / cover no-repeat, #DCEFC4; }
+    .splash-adornos { position: absolute; inset: 0; transition: opacity .3s ease; }
     .js .splash { display: grid; animation: sl-fuera 0s linear 8s forwards; }   /* seguro por si algo falla */
     .splash-salida { position: relative; z-index: 1; transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .5s ease; }
     /* Capa 1: sube de abajo al centro (sin girar) */
@@ -580,6 +577,12 @@
     @keyframes sl-fuera { to { opacity: 0; visibility: hidden; } }
     .splash.saliendo { animation: sl-fuera .5s ease forwards; pointer-events: none; }
     .splash.saliendo .splash-salida { transform: scale(1.12); opacity: 0; }
+    /* Final: el logo se hace chiquito y vuela a su lugar en la barra de arriba */
+    .splash.volando { pointer-events: none; animation: none; }
+    .splash.volando::before { opacity: 0; }
+    .splash.volando .splash-adornos { opacity: 0; }
+    .splash.volando .splash-salida { transition: transform .9s cubic-bezier(.65,0,.25,1); }
+    .logo-en-vuelo .marca-logo { opacity: 0; }
 
     /* ============================================================
        APARICIÓN AL BAJAR (scroll)
@@ -607,14 +610,13 @@
   <div class="splash" id="splash" aria-hidden="true">
     <div class="splash-salida">
       <div class="splash-logo">
-        <div class="splash-halo"></div>
-        <div class="splash-resplandor"></div>
+        <div class="splash-adornos"><div class="splash-halo"></div><div class="splash-resplandor"></div></div>
         <div class="splash-moneda">
           <i class="canto"></i><i class="canto"></i><i class="canto"></i><i class="canto"></i><i class="canto"></i>
           <div class="cara atras"><img data-img="logo" alt="" width="250" height="250"></div>
           <div class="cara frente"><img data-img="logo" alt="" width="250" height="250"><span class="splash-brillo"></span></div>
         </div>
-        <i class="chispa c1"></i><i class="chispa c2"></i><i class="chispa c3"></i><i class="chispa c4"></i><i class="chispa c5"></i><i class="chispa c6"></i>
+        <div class="splash-adornos"><i class="chispa c1"></i><i class="chispa c2"></i><i class="chispa c3"></i><i class="chispa c4"></i><i class="chispa c5"></i><i class="chispa c6"></i></div>
       </div>
     </div>
   </div>
@@ -623,22 +625,10 @@
        BARRA NARANJA: ENVÍOS A DOMICILIO
        ============================================================ -->
   <div class="barra-envios">
-    <div class="contenedor">
-      <p>
-        <svg class="camion" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4h13v11H1z"/><path d="M14 8h4l4 4v3h-8z"/><circle cx="5.5" cy="17.5" r="2"/><circle cx="17.5" cy="17.5" r="2"/></svg>
-        ¡Hacemos envíos a domicilio!
-      </p>
-      <div class="barra-envios-links">
-        <a class="ocultar-movil" data-wa-general href="#ubicacion">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
-          Pide por WhatsApp
-        </a>
-        <a data-instagram href="#" target="_blank" rel="noopener" aria-label="Instagram de Tienda Naturista Super Herbal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
-          <span class="ocultar-movil">Instagram</span>
-        </a>
-      </div>
-    </div>
+    <p class="marquesina">
+      <svg class="camion" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4h13v11H1z"/><path d="M14 8h4l4 4v3h-8z"/><circle cx="5.5" cy="17.5" r="2"/><circle cx="17.5" cy="17.5" r="2"/></svg>
+      ¡Hacemos envíos a domicilio!
+    </p>
   </div>
 
   <!-- ============================================================
@@ -939,7 +929,7 @@
       { id: "linea-sh",    nombre: "Línea SH",    texto: "Fórmulas numeradas de la marca Super Herbal." },
       { id: "citratos",    nombre: "Citratos",    texto: "Citratos en tabletas de la marca Super Herbal." },
       { id: "flex",        nombre: "Línea Flex",  texto: "Super Flex y Super Power Flex." },
-      { id: "dren-a-rren", nombre: "Dren-a-rren", texto: "Dos presentaciones: líquido (vino) y tabletas." }
+      { id: "dren-a-rren", nombre: "Dren-a-rren", texto: "Dos presentaciones: líquido (vino) y cápsulas." }
     ];
 
     /* ==============================================================
@@ -1059,39 +1049,60 @@
         usos: ["El magnesio es necesario para el funcionamiento normal de los músculos y los nervios.", "Participa en la formación de huesos y dientes.", "Muchas enzimas del cuerpo lo necesitan para funcionar."],
         usosNota: "Si tienes algún problema de los riñones, consulta a tu médico antes de tomar magnesio.",
         presentaciones: ["30 tabletas · 750 mg c/u"],
-        descripcion: "Suplemento alimenticio.",
+        descripcion: "Suplemento alimenticio con 500 mg de citrato de magnesio por tableta.",
         foto: "citrato-magnesio",
-        ficha: [{ t: "Presentación", v: "30 tabletas de 750 mg c/u" }]
+        ficha: [
+          { t: "Presentación", v: "30 tabletas de 750 mg c/u. Porción: 1 tableta · 30 porciones por envase." },
+          { t: "Ingredientes (según etiqueta)", v: ["Citrato de magnesio: 500 mg", "Celulosa", "Estearato de magnesio"] },
+          { t: "Modo de uso (según etiqueta)", v: "Tomar 1 tableta en la mañana solamente." },
+          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se use durante el embarazo o lactancia.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los menores de edad.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo consume."] }
+        ]
       },
       {
         categoria: "citratos",
         nombre: "Super Citrato de Potasio",
         usos: ["El potasio es un mineral que el cuerpo necesita para el funcionamiento de los músculos, los nervios, el corazón y los riñones.", "Ayuda a mantener el equilibrio de líquidos dentro de las células."],
         usosNota: "Si tienes algún problema de los riñones o tomas medicamento para la presión, consulta a tu médico antes de usarlo: el exceso de potasio puede ser peligroso.",
-        presentaciones: ["30 tabletas · 700 mg c/u"],
-        descripcion: "Suplemento alimenticio.",
+        presentaciones: ["30 tabletas · 750 mg c/u"],
+        descripcion: "Suplemento alimenticio con 500 mg de citrato de potasio por tableta.",
         foto: "citrato-potasio",
-        ficha: [{ t: "Presentación", v: "30 tabletas de 700 mg c/u" }]
+        ficha: [
+          { t: "Presentación", v: "30 tabletas de 750 mg c/u. Porción: 1 tableta · 30 porciones por envase." },
+          { t: "Ingredientes (según etiqueta)", v: ["Citrato de potasio: 500 mg", "Celulosa", "Estearato de magnesio"] },
+          { t: "Modo de uso (según etiqueta)", v: "Tomar 1 tableta a media mañana solamente." },
+          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se use durante el embarazo o lactancia.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los menores de edad.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo consume."] }
+        ]
       },
       // ---------- Línea Flex ----------
       {
         categoria: "flex",
         nombre: "Super Flex",
-        presentaciones: ["30 cápsulas"],
-        descripcion: "Suplemento alimenticio con glucosamina, MSM y colágeno, reforzado con ortiga.",
+        usos: ["La glucosamina, la condroitina y el colágeno son componentes naturales del cartílago de las articulaciones.", "La ortiga y la cúrcuma se usan tradicionalmente para el bienestar de las articulaciones.", "El MSM (azufre orgánico) y el cartílago de tiburón se usan en suplementos para articulaciones.", "El calcio de coral y el citrato de magnesio aportan minerales para los huesos."],
+        usosNota: "La glucosamina suele obtenerse de mariscos: si eres alérgico a los mariscos o tomas anticoagulantes, consulta a tu médico antes de usarlo.",
+        presentaciones: ["30 tabletas · 750 mg c/u"],
+        descripcion: "Suplemento alimenticio reforzado con ortiga, adicionado con glucosamina, MSM y cúrcuma.",
         foto: "super-flex",
         ficha: [
-          { t: "Presentación", v: "30 cápsulas" },
-          { t: "Fórmula (según etiqueta)", v: "Glucosamina, MSM y colágeno, reforzado con ortiga." }
+          { t: "Presentación", v: "30 tabletas de 750 mg c/u. Porción: 1 tableta · 30 porciones por envase." },
+          { t: "Ingredientes (según etiqueta)", v: "Sulfato de glucosamina, condroitina, ortiga (Urtica dioica), cúrcuma (Curcuma longa), celulosa microcristalina, cartílago de tiburón, calcio de coral, MSM (azufre orgánico), colágeno y citrato de magnesio." },
+          { t: "Modo de uso (según etiqueta)", v: ["Tomar 1 tableta al día, preferentemente después del desayuno.", "No exceder la dosis diaria recomendada."] },
+          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se use durante el embarazo o lactancia.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los menores de edad.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo consume."] }
         ]
       },
       {
         categoria: "flex",
         nombre: "Super Power Flex",
-        presentaciones: ["30 cápsulas · 500 mg"],
-        descripcion: "",
+        usos: ["El cartílago de tiburón y la cúrcuma se usan en suplementos para el cuidado de las articulaciones.", "Combina raíces y cortezas de la herbolaria tradicional mexicana: guácima, encino, cancerina y matarique, además de bardana.", "Aporta magnesio, calcio y vitamina E, un antioxidante."],
+        usosNota: "Ojo con el modo de uso: es 1 tableta cada tercer día o media tableta al día. Si tomas medicamentos, consulta a tu médico antes de usarlo.",
+        presentaciones: ["30 tabletas · 850 mg c/u"],
+        descripcion: "Suplemento alimenticio con cartílago de tiburón, cúrcuma y raíces de la herbolaria mexicana.",
         foto: "power-flex",
-        ficha: [{ t: "Presentación", v: "30 cápsulas de 500 mg" }]
+        ficha: [
+          { t: "Presentación", v: "30 tabletas de 850 mg c/u. Porción: 1 comprimido de 850 mg." },
+          { t: "Ingredientes (según etiqueta)", v: "Polvo de la raíz de guácima (Guazuma ulmifolia), polvo de la corteza de encino (Quercus conspersa), polvo de la raíz de cancerina (Semialarium mexicanum), polvo de la raíz de matarique (Psacalium decompositum), cartílago de tiburón, polvo de la raíz de bardana (Arctium lappa), polvo de la raíz de cúrcuma (Curcuma longa), óxido de magnesio, vitamina E (alfa tocoferol) y carbonato de calcio. Otros ingredientes: celulosa microcristalina y dióxido de silicio." },
+          { t: "Modo de uso (según etiqueta)", v: ["Tomar 1 tableta cada tercer día o media tableta después del almuerzo.", "No exceder la dosis recomendada diaria."] },
+          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se use durante el embarazo o lactancia.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los niños.", "Este producto no es un medicamento. El uso de este producto es responsabilidad de quien lo recomienda y de quien lo usa."] }
+        ]
       },
       // ---------- Dren-a-rren ----------
       {
@@ -1107,13 +1118,17 @@
       },
       {
         categoria: "dren-a-rren",
-        nombre: "Dren-a-rren en tabletas",
-        presentaciones: ["90 tabletas"],
-        descripcion: "Compuesto herbal de la marca Super Herbal en tabletas. Fórmula mejorada.",
+        nombre: "Dren-a-rren en cápsulas",
+        usos: ["Varias de sus plantas, como la cola de caballo, los cabellos de elote, la gayuba, la doradilla y el palo dulce, se usan en la herbolaria tradicional para el cuidado de los riñones y las vías urinarias.", "La cola de caballo y los cabellos de elote se usan como diuréticos (ayudan a orinar).", "El boldo y el cardo mariano se usan tradicionalmente para la digestión y el cuidado del hígado."],
+        usosNota: "La gayuba no se recomienda por periodos largos. Si tienes algún problema de los riñones o molestias al orinar, consulta a tu médico.",
+        presentaciones: ["90 cápsulas"],
+        descripcion: "Suplemento alimenticio con 13 plantas de la herbolaria tradicional. Fórmula mejorada.",
         foto: "dren-tabletas",
         ficha: [
-          { t: "Presentación", v: "Frasco con 90 tabletas" },
-          { t: "En la etiqueta", v: "Compuesto herbal · Suplemento alimenticio · Fórmula mejorada" }
+          { t: "Presentación", v: "Frasco con 90 cápsulas. Porción: 3 cápsulas · 30 porciones por envase." },
+          { t: "Ingredientes (según etiqueta)", v: ["Axocopaque", "Grangel y guásima", "Tlanchichinole", "Cabellos de elote", "Cola de caballo", "Palo dulce", "Palo 3 costillas", "Doradilla y gayuba", "Limpia plata", "Hierba de la golondrina", "Boldo y taray", "Flor de piedra", "Cardo mariano"] },
+          { t: "Modo de uso (según etiqueta)", v: "Tomar una cápsula con un vaso con agua, una hora antes de los alimentos." },
+          { t: "Advertencias (según etiqueta)", v: ["Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.", "Consérvese en un lugar fresco y seco.", "No se utilice si es intolerante a los ingredientes.", "No se use durante el embarazo y lactancia."] }
         ]
       }
     ];
@@ -1653,7 +1668,7 @@
             <h3 id="usos-titulo">${ICO.hoja || ""}¿Para qué se usa?</h3>
             ${p.usos && p.usos.length ? `<ul>${p.usos.map((x) => `<li>${escapar(x)}</li>`).join("")}</ul>` : `<p>${pendiente("[Agregar para qué se usa cuando tengamos la lista de ingredientes de la etiqueta]")}</p>`}
             ${p.usosNota ? `<p class="usos-nota">${escapar(p.usosNota)}</p>` : ""}
-            <p class="usos-aviso">Información general sobre sus ingredientes, según su uso tradicional y estudios publicados. Es un suplemento alimenticio, no un medicamento: no cura ni trata enfermedades.</p>
+            <p class="usos-aviso">Información general sobre sus ingredientes, según su uso tradicional y estudios publicados. Es un suplemento alimenticio.</p>
           </section>
           </div>
           <div class="detalle-info">
@@ -1834,11 +1849,11 @@
       if (location.hash.startsWith("#producto/")) { volverConAtras = false; ruta(false); }
     };
 
-    // Pantalla de bienvenida: el logo sube al centro, da un giro completo (frente y reverso), brilla y se desvanece (~2.6 s).
+    // Pantalla de bienvenida: el logo sube al centro, da un giro completo (frente y reverso), brilla y se desvanece y luego vuela a su lugar en la barra de arriba (~3.5 s).
     (function () {
       const splash = $("#splash");
       const logo = $("img", splash);
-      splash.style.backgroundImage = `url("${imagen("splash-fondo")}")`;
+      splash.style.setProperty("--fondo", `url("${imagen("splash-fondo")}")`);
       const fondo = new Image(); fondo.src = imagen("splash-fondo");
       let hecho = false;
       const cerrar = () => {
@@ -1848,13 +1863,32 @@
         terminarBienvenida();
         setTimeout(() => splash.remove(), 600);
       };
+      // Al terminar el brillo, el logo se encoge y se va volando a su lugar en la barra verde.
+      const volar = () => {
+        if (hecho) return;
+        const destino = $(".header .marca-logo");
+        const caja = $(".splash-logo", splash);
+        const d = destino && destino.getBoundingClientRect(), o = caja.getBoundingClientRect();
+        if (!d || !d.width || d.bottom < 0 || d.top > innerHeight || location.hash.startsWith("#producto/")) return cerrar();
+        hecho = true;
+        const escala = d.width / o.width;
+        const dx = d.left + d.width / 2 - (o.left + o.width / 2), dy = d.top + d.height / 2 - (o.top + o.height / 2);
+        document.body.classList.add("logo-en-vuelo");
+        splash.classList.add("volando");
+        $(".splash-salida", splash).style.transform = `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(${escala.toFixed(4)})`;
+        terminarBienvenida();
+        setTimeout(() => {
+          document.body.classList.remove("logo-en-vuelo");
+          requestAnimationFrame(() => splash.remove());
+        }, 950);
+      };
       splash.addEventListener("click", cerrar);
       document.addEventListener("keydown", (e) => { if (e.key === "Escape") cerrar(); });
       const iniciar = () => {
         // Espera dos cuadros para que la página termine de pintarse y la animación arranque sin saltos.
         requestAnimationFrame(() => requestAnimationFrame(() => {
           splash.classList.add("activo");
-          setTimeout(cerrar, 2600);
+          setTimeout(volar, 2550);
         }));
       };
       Promise.all([logo, fondo].map((im) => (im.decode ? im.decode().catch(() => {}) : null))).then(iniciar, iniciar);
