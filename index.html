@@ -399,6 +399,8 @@
     .producto-foto img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--suave); }
     .producto:hover .producto-foto img { transform: scale(1.05); }
     .insignia { position: absolute; top: .8rem; left: .8rem; z-index: 1; background: var(--azul); color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: .05em; padding: .3rem .65rem; border-radius: 999px; text-transform: uppercase; }
+    .insignia-precio { position: absolute; top: .8rem; right: .8rem; z-index: 1; background: var(--verde); color: var(--tinta); font-size: .82rem; font-weight: 800; padding: .3rem .7rem; border-radius: 999px; box-shadow: var(--sombra); }
+    .detalle-precio { margin: .2rem 0 .9rem; font-size: 1.5rem; font-weight: 800; color: var(--verde-hoja); }
     .insignia-nuevo { position: absolute; top: .8rem; right: .8rem; z-index: 1; background: var(--naranja); color: var(--tinta); font-size: .72rem; font-weight: 800; padding: .3rem .65rem; border-radius: 999px; }
     .producto-cuerpo { padding: 1.15rem 1.2rem 1.3rem; display: flex; flex-direction: column; flex: 1; }
     .producto h3 { margin-bottom: .5rem; transition: color .2s ease; }
@@ -848,7 +850,7 @@
   <aside class="aviso" aria-label="Aviso importante">
     <div class="contenedor">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M12 8v5M12 16h.01"/></svg>
-      <p><strong>Aviso:</strong> la información de este sitio es solo informativa y no sustituye la orientación de un profesional de la salud. Los productos que aquí se presentan no están destinados a diagnosticar, tratar, curar ni prevenir enfermedades. Este producto no es un medicamento. El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.</p>
+      <p><strong>Aviso:</strong> la información de este sitio es solo informativa y no sustituye la orientación de un profesional de la salud. Los productos que aquí se presentan no están destinados a diagnosticar, tratar, curar ni prevenir enfermedades. Este producto no es un medicamento. El consumo de este producto es responsabilidad de quien lo usa.</p>
     </div>
   </aside>
 
@@ -948,7 +950,8 @@
       {
         categoria: "linea-sh", codigo: "SH-07",
         nombre: "Súper Berberina Complex",
-        usos: ["La berberina y la canela se han estudiado por su relación con el nivel de azúcar (glucosa) en la sangre.", "El cromo, el zinc y el magnesio participan en el aprovechamiento de los carbohidratos de los alimentos.", "El ácido alfa lipóico y la vitamina E son antioxidantes: ayudan a proteger las células del desgaste."],
+        precio: 244,
+        usos: ["Puede ayudar a disminuir los niveles de glucosa en sangre.", "Mejora la sensibilidad a la insulina.", "Reduce el colesterol LDL (malo).", "Ayuda a disminuir los triglicéridos.", "Apoya el metabolismo: puede mejorar algunos indicadores metabólicos.", "Puede favorecer la pérdida de peso, aunque la evidencia todavía no es concluyente.", "Puede ayudar en el síndrome de ovario poliquístico (SOP)."],
         usosNota: "Si tomas medicamento para el azúcar, consulta a tu médico antes de usarla, porque la berberina puede sumarse a su efecto.",
         presentaciones: ["35 cápsulas"],
         descripcion: "Suplemento alimenticio a base de canela, berberina HCl y ácido alfa lipóico, adicionado con vitamina E, magnesio, zinc y cromo.",
@@ -959,14 +962,15 @@
           { t: "Ingredientes (según etiqueta)", v: "Canela (Cinnamomum verum), berberina HCl (Berberis vulgaris), gluconato de magnesio, ácido alfa lipóico, vitamina E, gluconato de zinc, polinicotinato de cromo." },
           { t: "Contenido por porción (1 cápsula)", v: ["Berberina HCl: 80 mg", "Canela: 260 mg", "Ácido alfa lipóico: 20 mg", "Gluconato de magnesio: 60 mg", "Gluconato de zinc: 10 mg", "Polinicotinato de cromo: 20 mcg", "Vitamina E: 15 mg"] },
           { t: "Modo de uso (según etiqueta)", v: "Tomar 1 cápsula 15 minutos antes del alimento más abundante del día." },
-          { t: "Advertencias (según etiqueta)", v: ["Este producto no es un medicamento.", "No se recomienda su consumo durante el embarazo o la lactancia.", "Manténgase fuera del alcance de los niños.", "Consérvese en un lugar fresco y seco, protegido de la luz.", "No consumir si es sensible a alguno de los ingredientes de la fórmula."] },
+          { t: "Advertencias (según etiqueta)", v: ["Este producto no es un medicamento.", "No se recomienda el uso durante el embarazo o lactancia sin consultar previamente a su médico.", "Manténgase fuera del alcance de los niños.", "Consérvese en un lugar fresco y seco, protegido de la luz.", "No consumir si es sensible a alguno de los ingredientes de la fórmula."] },
           { t: "En la etiqueta", v: "Vegano · Libre de GMO · Libre de gluten · Libre de aditivos" }
         ]
       },
       {
         categoria: "linea-sh", codigo: "SH-08",
         nombre: "Super Magnesio Complex",
-        usos: ["El magnesio es necesario para el funcionamiento normal de los músculos y los nervios.", "Participa en la formación de huesos y dientes.", "Muchas enzimas del cuerpo lo necesitan para funcionar.", "Combina 7 formas de magnesio: citrato, glicinato, bisglicinato, malato, taurato, treonato y óxido."],
+        precio: 182,
+        usos: ["Relajación muscular: ayuda al funcionamiento y relajación de los músculos.", "Sistema nervioso: contribuye al funcionamiento adecuado del sistema nervioso.", "Descanso: puede favorecer la relajación y mejorar el sueño, especialmente si existe deficiencia de magnesio.", "Energía: participa en la producción de energía del organismo.", "Salud cardiovascular: contribuye al funcionamiento normal del corazón.", "Salud ósea: ayuda a mantener huesos fuertes.", "Función cognitiva: el magnesio participa en las funciones cerebrales.", "Estreñimiento: el citrato de magnesio puede favorecer el tránsito intestinal.", "Calambres: ayuda a la función muscular normal, aunque no todos los calambres se deben a falta de magnesio."],
         usosNota: "Si tienes algún problema de los riñones, consulta a tu médico antes de tomar magnesio.",
         presentaciones: ["60 cápsulas · 500 mg c/u"],
         descripcion: "Suplemento alimenticio. Extracto mineral.",
@@ -977,13 +981,14 @@
           { t: "Ingredientes (según etiqueta)", v: "Citrato de magnesio, óxido de magnesio, malato de magnesio, taurato de magnesio, treonato de magnesio, glicinato de magnesio y bisglicinato de magnesio." },
           { t: "Contenido por porción (1 cápsula)", v: ["Glicinato de magnesio: 90 mg", "Malato de magnesio: 90 mg", "Taurato de magnesio: 90 mg", "Citrato de magnesio: 90 mg", "Bisglicinato de magnesio: 90 mg", "Treonato de magnesio: 90 mg", "Óxido de magnesio: 90 mg", "Magnesio elemental: 449 mg"] },
           { t: "Modo de uso (según etiqueta)", v: "Tomar 1 cápsula cada 12 horas después de los alimentos. No exceda la porción recomendada por día." },
-          { t: "Advertencias (según etiqueta)", v: ["No se use durante el embarazo o lactancia.", "No se deje al alcance de los niños.", "Consérvese el frasco bien tapado en un lugar fresco y seco.", "No se use si el sello de seguridad está roto.", "Empacado en líneas donde se procesan productos que pueden contener trazas de soya, leche, trigo y maíz.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa."] }
+          { t: "Advertencias (según etiqueta)", v: ["No se recomienda el uso durante el embarazo o lactancia sin consultar previamente a su médico.", "No se deje al alcance de los niños.", "Consérvese el frasco bien tapado en un lugar fresco y seco.", "No se use si el sello de seguridad está roto.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo usa."] }
         ]
       },
       {
         categoria: "linea-sh", codigo: "SH-11",
         nombre: "Silimariano y Alcachofa",
-        usos: ["El cardo mariano (silimarina) se ha usado por siglos para el cuidado del hígado.", "La alcachofa se usa tradicionalmente para la digestión, como la sensación de pesadez después de comer.", "El boldo y el diente de león son plantas de uso tradicional para la digestión.", "Reforzado con cúrcuma."],
+        precio: 129,
+        usos: ["Hígado: la silimarina tiene propiedades antioxidantes y se estudia por su posible efecto protector hepático.", "Digestión: la alcachofa puede favorecer la digestión de las grasas.", "Vesícula biliar: la alcachofa puede estimular la producción y circulación de bilis.", "Colesterol: la alcachofa puede ayudar modestamente a mejorar los niveles de colesterol.", "Antioxidantes: ambas contienen compuestos con actividad antioxidante."],
         nuevo: "Nueva presentación",
         presentaciones: ["100 cápsulas · 500 mg c/u"],
         descripcion: "Silimariano y alcachofa, reforzado con cúrcuma.",
@@ -993,14 +998,15 @@
           { t: "Ingredientes (según etiqueta)", v: "Cardo mariano (silimarina al 80%), alcachofa (Cynara scolymus), boldo, diente de león y cúrcuma." },
           { t: "Cantidades por cápsula (según etiqueta)", v: ["Cardo mariano (silimarina al 80%): 200 mg", "Alcachofa: 400 mg", "Boldo: 40 mg", "Diente de león: 40 mg", "Cúrcuma: 20 mg"] },
           { t: "Modo de uso (según etiqueta)", v: "Tomar 2 cápsulas tres veces al día." },
-          { t: "Advertencias (según etiqueta)", v: ["Este producto no es un medicamento.", "No se administre durante el embarazo ni en la lactancia.", "Consérvese en lugar fresco y seco.", "No se deje al alcance de los niños.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.", "Practique el ejercicio y visite regularmente a su médico."] },
+          { t: "Advertencias (según etiqueta)", v: ["Este producto no es un medicamento.", "No se recomienda el uso durante el embarazo o lactancia sin consultar previamente a su médico.", "Consérvese en lugar fresco y seco.", "No se deje al alcance de los niños.", "El consumo de este producto es responsabilidad de quien lo usa.", "Practique el ejercicio y visite regularmente a su médico."] },
           { t: "En la etiqueta", v: "Reforzado con cúrcuma. ¡Nueva presentación!" }
         ]
       },
       {
         categoria: "linea-sh", codigo: "SH-14",
         nombre: "BU-PRO",
-        usos: ["El saw palmetto, la ortiga y el licopeno se usan para el bienestar de la próstata y las vías urinarias del hombre.", "Los cabellos de elote, el enebro y la hierba del sapo se usan en la herbolaria como diuréticos (ayudan a orinar).", "El té verde y el brócoli aportan antioxidantes.", "La uña de gato se usa tradicionalmente para apoyar las defensas del cuerpo."],
+        precio: 146,
+        usos: ["Ayuda a mantener la salud y el funcionamiento de la próstata.", "Favorece el flujo urinario y la eliminación de líquidos.", "Apoya el bienestar de las vías urinarias.", "Aporta antioxidantes que ayudan a proteger las células prostáticas."],
         usosNota: "Si tienes molestias al orinar, consulta a tu médico. Este producto no sustituye una revisión de la próstata.",
         presentaciones: ["90 cápsulas · 1 g c/u"],
         descripcion: "Suplemento alimenticio.",
@@ -1009,13 +1015,14 @@
           { t: "Presentación", v: "90 cápsulas de 1 g c/u. Porción: 1 cápsula · 90 porciones por frasco." },
           { t: "Ingredientes (según etiqueta)", v: "Saw palmetto (Serenoa repens), uña de gato (Uncaria tomentosa), licopeno (Lycopersicum esculentum), ortiga (Urtica dioica), brócoli (Brassica oleracea L.), té verde (Camellia sinensis), cabellos de elote (Zea mays), enebro (Juniperus communis), hierba del sapo (Eryngium), fenogreco (Trigonella foenum-graecum) y árnica (Arnica montana)." },
           { t: "Modo de uso (según etiqueta)", v: "Tomar una cápsula en cada comida." },
-          { t: "Advertencias (según etiqueta)", v: ["Manténgase en lugar fresco y seco.", "No se deje al alcance de los niños.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.", "Este producto no es un medicamento."] }
+          { t: "Advertencias (según etiqueta)", v: ["Manténgase en lugar fresco y seco.", "No se deje al alcance de los niños.", "El consumo de este producto es responsabilidad de quien lo usa.", "Este producto no es un medicamento."] }
         ]
       },
       {
         categoria: "linea-sh", codigo: "SH-15",
         nombre: "BO-PRO",
-        usos: ["El saw palmetto, la ortiga y el licopeno se usan para el bienestar de la próstata y las vías urinarias del hombre.", "El cuachalalate es una corteza de la herbolaria mexicana usada tradicionalmente para el cuidado del estómago.", "Los cabellos de elote se usan en la herbolaria como diurético (ayudan a orinar).", "El té verde y el brócoli aportan antioxidantes."],
+        precio: 341,
+        usos: ["Ayuda a mantener el buen funcionamiento de la próstata.", "Favorece la salud de las vías urinarias.", "Aporta antioxidantes que protegen las células.", "Apoya el bienestar urinario y la eliminación de líquidos."],
         usosNota: "Si tienes molestias al orinar, consulta a tu médico. Este producto no sustituye una revisión de la próstata.",
         presentaciones: ["60 capletas · 760 mg c/u"],
         descripcion: "Con saw palmetto, uña de gato, licopeno, ortiga, brócoli y té verde.",
@@ -1024,13 +1031,14 @@
           { t: "Presentación", v: "60 capletas de 760 mg c/u (contenido neto 45.6 g). Porción: 2 capletas · 30 porciones por frasco." },
           { t: "Ingredientes (según etiqueta)", v: "Saw palmetto (Serenoa repens), uña de gato (Uncaria tomentosa), licopeno (Lycopersicum esculentum), ortiga (Urtica dioica), brócoli (Brassica oleracea L.), té verde (Camellia sinensis), cuachalalate (Juliania adstringens) y cabellos de elote (Zea mays, estigmas)." },
           { t: "Modo de uso (según etiqueta)", v: "Tomar 2 capletas al día (1 cada 12 horas)." },
-          { t: "Advertencias (según etiqueta)", v: ["Manténgase en lugar fresco y seco.", "No se deje al alcance de los niños.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.", "Practique el ejercicio y visite regularmente a su médico."] }
+          { t: "Advertencias (según etiqueta)", v: ["Manténgase en lugar fresco y seco.", "No se deje al alcance de los niños.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo usa.", "Practique el ejercicio y visite regularmente a su médico."] }
         ]
       },
       {
         categoria: "linea-sh", codigo: "SH-16",
         nombre: "ONK-TR",
-        usos: ["Combina 12 ingredientes de la herbolaria tradicional, varios de ellos mexicanos, como el cuachalalate, la cancerina y el etcho.", "La uña de gato se usa tradicionalmente para apoyar las defensas del cuerpo.", "El cuachalalate y la cancerina son cortezas que la medicina tradicional mexicana usa para el cuidado del estómago.", "El ajo, la cebolla, el diente de león y la milenrama son plantas de uso tradicional en la herbolaria."],
+        precio: 297,
+        usos: ["Aporta compuestos vegetales con propiedades antioxidantes.", "Ayuda a proteger las células frente al daño oxidativo.", "Contiene ingredientes estudiados por sus posibles efectos sobre procesos celulares.", "Sus componentes se investigan por su potencial actividad biológica relacionada con el crecimiento celular."],
         usosNota: "No sustituye ningún tratamiento médico. Si estás en tratamiento o tomas medicamentos, consulta a tu médico antes de usarlo.",
         presentaciones: ["60 cápsulas · 500 mg c/u"],
         descripcion: "Suplemento alimenticio.",
@@ -1039,14 +1047,15 @@
           { t: "Presentación", v: "60 cápsulas de 500 mg (contenido neto 30 g). Porción: 1 cápsula · 60 porciones por frasco." },
           { t: "Ingredientes (según etiqueta)", v: "Cartílago de tiburón, uña de gato (Uncaria tomentosa), cardo bendito (Cnicus benedictus L.), cancerina (Semialarium mexicanum), ajo (Allium sativum L.), cebolla (Allium cepa), milenrama (Achillea millefolium), amargón (Taraxacum officinale), cuachalalate (Amphipterygium adstringens), consuelda menor (Prunella vulgaris), etcho (Pachycereus pecten-aboriginum) y nogal (Juglans regia)." },
           { t: "Modo de uso (según etiqueta)", v: "Tomar 2 cápsulas cada 6 horas." },
-          { t: "Advertencias (según etiqueta)", v: ["Este producto no es un medicamento.", "Consérvese en lugar fresco y seco.", "No se deje al alcance de los niños.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.", "Practique el ejercicio y visite regularmente a su médico."] }
+          { t: "Advertencias (según etiqueta)", v: ["Este producto no es un medicamento.", "Consérvese en lugar fresco y seco.", "No se deje al alcance de los niños.", "El consumo de este producto es responsabilidad de quien lo usa.", "Practique el ejercicio y visite regularmente a su médico."] }
         ]
       },
       // ---------- Citratos ----------
       {
         categoria: "citratos",
         nombre: "Super Citrato de Magnesio",
-        usos: ["El magnesio es necesario para el funcionamiento normal de los músculos y los nervios.", "Participa en la formación de huesos y dientes.", "Muchas enzimas del cuerpo lo necesitan para funcionar."],
+        precio: 139,
+        usos: ["Favorece el tránsito intestinal y alivia el estreñimiento ocasional.", "Apoya el funcionamiento muscular.", "Contribuye al buen funcionamiento del sistema nervioso.", "Participa en la producción de energía.", "Ayuda al mantenimiento de huesos saludables."],
         usosNota: "Si tienes algún problema de los riñones, consulta a tu médico antes de tomar magnesio.",
         presentaciones: ["30 tabletas · 750 mg c/u"],
         descripcion: "Suplemento alimenticio con 500 mg de citrato de magnesio por tableta.",
@@ -1055,12 +1064,13 @@
           { t: "Presentación", v: "30 tabletas de 750 mg c/u. Porción: 1 tableta · 30 porciones por envase." },
           { t: "Ingredientes (según etiqueta)", v: ["Citrato de magnesio: 500 mg", "Celulosa", "Estearato de magnesio"] },
           { t: "Modo de uso (según etiqueta)", v: "Tomar 1 tableta en la mañana solamente." },
-          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se use durante el embarazo o lactancia.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los menores de edad.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo consume."] }
+          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se recomienda el uso durante el embarazo o lactancia sin consultar previamente a su médico.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los menores de edad.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo usa."] }
         ]
       },
       {
         categoria: "citratos",
         nombre: "Super Citrato de Potasio",
+        precio: 139,
         usos: ["El potasio es un mineral que el cuerpo necesita para el funcionamiento de los músculos, los nervios, el corazón y los riñones.", "Ayuda a mantener el equilibrio de líquidos dentro de las células."],
         usosNota: "Si tienes algún problema de los riñones o tomas medicamento para la presión, consulta a tu médico antes de usarlo: el exceso de potasio puede ser peligroso.",
         presentaciones: ["30 tabletas · 750 mg c/u"],
@@ -1070,14 +1080,15 @@
           { t: "Presentación", v: "30 tabletas de 750 mg c/u. Porción: 1 tableta · 30 porciones por envase." },
           { t: "Ingredientes (según etiqueta)", v: ["Citrato de potasio: 500 mg", "Celulosa", "Estearato de magnesio"] },
           { t: "Modo de uso (según etiqueta)", v: "Tomar 1 tableta a media mañana solamente." },
-          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se use durante el embarazo o lactancia.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los menores de edad.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo consume."] }
+          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se recomienda el uso durante el embarazo o lactancia sin consultar previamente a su médico.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los menores de edad.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo usa."] }
         ]
       },
       // ---------- Línea Flex ----------
       {
         categoria: "flex",
         nombre: "Super Flex",
-        usos: ["La glucosamina, la condroitina y el colágeno son componentes naturales del cartílago de las articulaciones.", "La ortiga y la cúrcuma se usan tradicionalmente para el bienestar de las articulaciones.", "El MSM (azufre orgánico) y el cartílago de tiburón se usan en suplementos para articulaciones.", "El calcio de coral y el citrato de magnesio aportan minerales para los huesos."],
+        precio: 199,
+        usos: ["Ayuda a mantener la movilidad articular.", "Apoya el bienestar de cartílagos y articulaciones.", "Favorece la flexibilidad.", "Puede ayudar a mantener la comodidad al movimiento."],
         usosNota: "La glucosamina suele obtenerse de mariscos: si eres alérgico a los mariscos o tomas anticoagulantes, consulta a tu médico antes de usarlo.",
         presentaciones: ["30 tabletas · 750 mg c/u"],
         descripcion: "Suplemento alimenticio reforzado con ortiga, adicionado con glucosamina, MSM y cúrcuma.",
@@ -1086,13 +1097,14 @@
           { t: "Presentación", v: "30 tabletas de 750 mg c/u. Porción: 1 tableta · 30 porciones por envase." },
           { t: "Ingredientes (según etiqueta)", v: "Sulfato de glucosamina, condroitina, ortiga (Urtica dioica), cúrcuma (Curcuma longa), celulosa microcristalina, cartílago de tiburón, calcio de coral, MSM (azufre orgánico), colágeno y citrato de magnesio." },
           { t: "Modo de uso (según etiqueta)", v: ["Tomar 1 tableta al día, preferentemente después del desayuno.", "No exceder la dosis diaria recomendada."] },
-          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se use durante el embarazo o lactancia.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los menores de edad.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo consume."] }
+          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se recomienda el uso durante el embarazo o lactancia sin consultar previamente a su médico.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los menores de edad.", "Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo usa."] }
         ]
       },
       {
         categoria: "flex",
         nombre: "Super Power Flex",
-        usos: ["El cartílago de tiburón y la cúrcuma se usan en suplementos para el cuidado de las articulaciones.", "Combina raíces y cortezas de la herbolaria tradicional mexicana: guácima, encino, cancerina y matarique, además de bardana.", "Aporta magnesio, calcio y vitamina E, un antioxidante."],
+        precio: 229,
+        usos: ["Apoya la salud de huesos y articulaciones.", "Contribuye al mantenimiento de cartílagos.", "Aporta minerales importantes para músculos y huesos.", "Contiene ingredientes con propiedades antioxidantes.", "Está enfocado en apoyar la movilidad y el bienestar muscular y articular."],
         usosNota: "Ojo con el modo de uso: es 1 tableta cada tercer día o media tableta al día. Si tomas medicamentos, consulta a tu médico antes de usarlo.",
         presentaciones: ["30 tabletas · 850 mg c/u"],
         descripcion: "Suplemento alimenticio con cartílago de tiburón, cúrcuma y raíces de la herbolaria mexicana.",
@@ -1101,25 +1113,31 @@
           { t: "Presentación", v: "30 tabletas de 850 mg c/u. Porción: 1 comprimido de 850 mg." },
           { t: "Ingredientes (según etiqueta)", v: "Polvo de la raíz de guácima (Guazuma ulmifolia), polvo de la corteza de encino (Quercus conspersa), polvo de la raíz de cancerina (Semialarium mexicanum), polvo de la raíz de matarique (Psacalium decompositum), cartílago de tiburón, polvo de la raíz de bardana (Arctium lappa), polvo de la raíz de cúrcuma (Curcuma longa), óxido de magnesio, vitamina E (alfa tocoferol) y carbonato de calcio. Otros ingredientes: celulosa microcristalina y dióxido de silicio." },
           { t: "Modo de uso (según etiqueta)", v: ["Tomar 1 tableta cada tercer día o media tableta después del almuerzo.", "No exceder la dosis recomendada diaria."] },
-          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se use durante el embarazo o lactancia.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los niños.", "Este producto no es un medicamento. El uso de este producto es responsabilidad de quien lo recomienda y de quien lo usa."] }
+          { t: "Advertencias (según etiqueta)", v: ["Consérvese en un lugar fresco y seco, bien cerrado.", "No se recomienda el uso durante el embarazo o lactancia sin consultar previamente a su médico.", "No se use si el sello de seguridad está roto.", "No se deje al alcance de los niños.", "Este producto no es un medicamento. El uso de este producto es responsabilidad de quien lo usa."] }
         ]
       },
       // ---------- Dren-a-rren ----------
       {
         categoria: "dren-a-rren",
         nombre: "Vino Dren-a-rren (líquido)",
+        precio: 198,
+        usos: ["Favorece la eliminación de líquidos.", "Apoya el funcionamiento de las vías urinarias.", "Ayuda a mantener el flujo urinario.", "Contiene plantas tradicionalmente utilizadas para el bienestar de los riñones.", "Aporta ingredientes con propiedades diuréticas."],
         presentaciones: ["1 L", "750 ml"],
         descripcion: "Suplemento alimenticio de la marca Super Herbal en presentación líquida. Nueva presentación, fórmula mejorada.",
         foto: "dren-liquido",
         ficha: [
           { t: "Presentaciones", v: ["1 litro", "750 ml"] },
+          { t: "Ingredientes", v: ["Axocopaque", "Grangel y guásima", "Tlanchichinole", "Cabellos de elote", "Cola de caballo", "Palo dulce", "Palo tres costillas", "Doradilla y gayuba", "Limpia plata", "Hierba de la golondrina", "Boldo y taray", "Flor de piedra", "Cardo mariano"] },
+          { t: "Modo de uso", v: "Tomar 2 cucharadas con cada alimento." },
+          { t: "Advertencias", v: ["Consérvese en refrigeración.", "Consulte a su médico."] },
           { t: "En la etiqueta", v: "Suplemento alimenticio · Nueva presentación · Fórmula mejorada" }
         ]
       },
       {
         categoria: "dren-a-rren",
         nombre: "Dren-a-rren en cápsulas",
-        usos: ["Varias de sus plantas, como la cola de caballo, los cabellos de elote, la gayuba, la doradilla y el palo dulce, se usan en la herbolaria tradicional para el cuidado de los riñones y las vías urinarias.", "La cola de caballo y los cabellos de elote se usan como diuréticos (ayudan a orinar).", "El boldo y el cardo mariano se usan tradicionalmente para la digestión y el cuidado del hígado."],
+        precio: 187,
+        usos: ["Favorece la eliminación de líquidos.", "Apoya el funcionamiento de las vías urinarias.", "Contribuye al bienestar de los riñones.", "Contiene plantas tradicionalmente utilizadas por sus propiedades diuréticas.", "Aporta ingredientes vegetales con propiedades antioxidantes."],
         usosNota: "La gayuba no se recomienda por periodos largos. Si tienes algún problema de los riñones o molestias al orinar, consulta a tu médico.",
         presentaciones: ["90 cápsulas"],
         descripcion: "Suplemento alimenticio con 13 plantas de la herbolaria tradicional. Fórmula mejorada.",
@@ -1128,7 +1146,7 @@
           { t: "Presentación", v: "Frasco con 90 cápsulas. Porción: 3 cápsulas · 30 porciones por envase." },
           { t: "Ingredientes (según etiqueta)", v: ["Axocopaque", "Grangel y guásima", "Tlanchichinole", "Cabellos de elote", "Cola de caballo", "Palo dulce", "Palo 3 costillas", "Doradilla y gayuba", "Limpia plata", "Hierba de la golondrina", "Boldo y taray", "Flor de piedra", "Cardo mariano"] },
           { t: "Modo de uso (según etiqueta)", v: "Tomar una cápsula con un vaso con agua, una hora antes de los alimentos." },
-          { t: "Advertencias (según etiqueta)", v: ["Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.", "Consérvese en un lugar fresco y seco.", "No se utilice si es intolerante a los ingredientes.", "No se use durante el embarazo y lactancia."] }
+          { t: "Advertencias (según etiqueta)", v: ["Este producto no es un medicamento.", "El consumo de este producto es responsabilidad de quien lo usa.", "Consérvese en un lugar fresco y seco.", "No se utilice si es intolerante a los ingredientes.", "No se recomienda el uso durante el embarazo o lactancia sin consultar previamente a su médico."] }
         ]
       }
     ];
@@ -1150,6 +1168,7 @@
     const mapaEmbebido = (s) => "https://www.google.com/maps?q=" + encodeURIComponent(CONFIG.nombre + ", " + s.direccion) + "&output=embed";
     const normalizar = (t) => String(t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
     const nombreCompleto = (p) => (p.codigo ? p.codigo + " · " : "") + p.nombre;
+    const fmtPrecio = (n) => "$" + n.toLocaleString("es-MX") + " MXN";
     const catDe = (p) => CATEGORIAS.find((c) => c.id === p.categoria) || { nombre: "" };
     const svg = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
     const ICO = {
@@ -1245,6 +1264,7 @@
         <button type="button" class="producto-foto" data-abrir="${p._i}" aria-label="Ver ${escapar(nombreCompleto(p))}">
           <span class="insignia">${escapar(p.codigo || "Super Herbal")}</span>
           ${p.nuevo ? `<span class="insignia-nuevo">${escapar(p.nuevo)}</span>` : ""}
+          ${p.precio ? `<span class="insignia-precio"${p.nuevo ? ' style="top:2.6rem"' : ""}>${fmtPrecio(p.precio)}</span>` : ""}
           ${p.foto ? `<img src="${escapar(imagen(p.foto))}" alt="${escapar(p.nombre)} de Super Herbal" loading="lazy" decoding="async" width="640" height="640">` : ""}
         </button>
         <div class="producto-cuerpo">
@@ -1674,6 +1694,7 @@
           <div class="detalle-info">
             <p class="etiqueta">${escapar(catDe(p).nombre)}${p.codigo ? " · " + escapar(p.codigo) : ""}</p>
             <h2 id="detalle-titulo">${escapar(p.nombre)}</h2>
+            ${p.precio ? `<p class="detalle-precio">${fmtPrecio(p.precio)}</p>` : ""}
             <ul class="presentaciones">${p.presentaciones.map((x) => `<li>${escapar(x)}</li>`).join("")}${p.nuevo ? `<li style="background:#FFE8D2;color:#8A3D00">${escapar(p.nuevo)}</li>` : ""}</ul>
             <p class="detalle-desc">${p.descripcion ? escapar(p.descripcion) : pendiente("[Agregar descripción breve aprobada por el negocio]")}</p>
             <dl class="ficha">${filasFicha(p)}</dl>
