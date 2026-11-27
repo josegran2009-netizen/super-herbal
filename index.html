@@ -170,7 +170,7 @@
     .marca-texto strong { font-family: var(--fuente-titulos); font-size: 1.25rem; font-weight: 800; color: var(--azul-oscuro); }
 
     /* Buscador */
-    .buscador { position: relative; flex: 1 1 240px; max-width: 320px; margin: 0; }
+    .buscador { position: relative; flex: 1 1 160px; min-width: 150px; max-width: 320px; margin: 0; }
     .buscador input {
       width: 100%; height: 44px; border-radius: 999px; border: 2px solid rgba(255,255,255,.85); background: #fff;
       padding: 0 2.6rem 0 2.6rem; font: 600 .95rem var(--fuente-texto); color: var(--tinta);
@@ -207,11 +207,11 @@
     .nav { margin-left: auto; }
     .nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: .1rem; }
     .nav a:not(.boton) {
-      display: block; padding: .55rem .75rem; border-radius: 10px; color: var(--tinta); text-decoration: none; font-weight: 700; font-size: .96rem;
+      display: block; padding: .55rem .65rem; white-space: nowrap; border-radius: 10px; color: var(--tinta); text-decoration: none; font-weight: 700; font-size: .96rem;
       transition: background-color .2s ease;
     }
     .nav a:not(.boton):hover, .nav a[aria-current="page"] { background: rgba(255,255,255,.5); }
-    .nav .boton { margin-left: .4rem; min-height: 44px; padding: .55rem 1.05rem; }
+    .nav .boton { margin-left: .4rem; min-height: 44px; padding: .55rem 1.05rem; white-space: nowrap; }
 
     .menu-boton { display: none; width: 48px; height: 48px; border-radius: 12px; border: 1.5px solid var(--verde-borde); background: var(--blanco); cursor: pointer; align-items: center; justify-content: center; margin-left: auto; }
     .menu-boton span, .menu-boton span::before, .menu-boton span::after { display: block; width: 20px; height: 2px; background: var(--tinta); border-radius: 2px; position: relative; transition: transform .25s ease, background-color .25s ease; }
@@ -222,8 +222,18 @@
     .menu-boton[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
     .menu-boton[aria-expanded="true"] span::after { transform: translateY(-6px) rotate(-45deg); }
 
-    @media (max-width: 1100px) {
+    /* ---------- Botón del carrito (barra verde) ---------- */
+    .carrito-boton { position: relative; flex: none; display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px; border: 1.5px solid var(--verde-borde); background: var(--blanco); color: var(--tinta); cursor: pointer; transition: transform .2s var(--suave), box-shadow .2s ease; }
+    .carrito-boton:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(14,33,72,.15); }
+    .carrito-boton svg { width: 24px; height: 24px; }
+    .carrito-cuenta { position: absolute; top: -7px; right: -7px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--naranja); color: #fff; font: 800 .75rem/22px var(--fuente-texto); text-align: center; box-shadow: 0 0 0 2px var(--verde); }
+    .carrito-cuenta.salta { animation: cuenta-salta .5s var(--suave); }
+    @keyframes cuenta-salta { 0% { transform: scale(1); } 40% { transform: scale(1.45); } 100% { transform: scale(1); } }
+
+    @media (max-width: 1180px) {
       .header .contenedor { flex-wrap: wrap; height: auto; padding: .55rem 0 .7rem; row-gap: .55rem; position: static; }
+      .carrito-boton { order: 1; margin-left: auto; }
+      .menu-boton { order: 2; margin-left: .6rem; }
       .menu-boton { display: inline-flex; }
       .buscador { order: 3; flex: 1 1 100%; max-width: none; }
       .nav { position: absolute; left: 0; right: 0; top: 100%; margin: 0; background: var(--verde); border-bottom: 1px solid var(--verde-borde); box-shadow: 0 16px 30px rgba(14,33,72,.16); display: none; }
@@ -231,6 +241,16 @@
       .nav ul { flex-direction: column; align-items: stretch; padding: .5rem 1.25rem 1.1rem; gap: .1rem; }
       .nav a:not(.boton) { padding: .85rem .75rem; font-size: 1.05rem; }
       .nav .boton { margin: .6rem 0 0; width: 100%; min-height: 50px; }
+    }
+
+    @media (max-width: 400px) {
+      .header .contenedor { column-gap: .5rem; }
+      .marca { gap: .5rem; }
+      .marca-logo { width: 44px; height: 44px; }
+      .marca-texto small { font-size: .66rem; }
+      .marca-texto strong { font-size: 1.12rem; }
+      .carrito-boton, .menu-boton { width: 44px; height: 44px; }
+      .menu-boton { margin-left: .45rem; }
     }
 
     /* ---------- Vistas (Inicio / Tienda online) ---------- */
@@ -400,6 +420,62 @@
     .producto:hover .producto-foto img { transform: scale(1.05); }
     .insignia { position: absolute; top: .8rem; left: .8rem; z-index: 1; background: var(--azul); color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: .05em; padding: .3rem .65rem; border-radius: 999px; text-transform: uppercase; }
     .insignia-precio { position: absolute; top: .8rem; right: .8rem; z-index: 1; background: var(--verde); color: var(--tinta); font-size: .82rem; font-weight: 800; padding: .3rem .7rem; border-radius: 999px; box-shadow: var(--sombra); }
+    .insignia-precio.agotado { background: #E4E7EC; color: #475467; }
+    .compra { display: grid; gap: .8rem; background: #fff; border: 1px solid var(--borde); border-radius: 16px; padding: 1rem; margin: 0 0 .8rem; }
+    .variantes { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .variante { min-height: 44px; padding: .5rem 1.1rem; border: 2px solid var(--borde); border-radius: 999px; background: #fff; color: var(--tinta); font: 700 .95rem/1 var(--fuente-texto); cursor: pointer; }
+    .variante[aria-checked="true"] { border-color: var(--azul); background: #EAF0FB; color: var(--azul); }
+    .existencias { display: flex; align-items: center; gap: .5rem; margin: 0; font-weight: 800; color: var(--verde-hoja); }
+    .existencias::before { content: ""; width: .6rem; height: .6rem; border-radius: 50%; background: currentColor; flex: none; }
+    .existencias.pocas { color: #B54708; }
+    .existencias.agotado { color: #B42318; }
+    .compra-fila { display: flex; flex-wrap: wrap; gap: .7rem; }
+    .cantidad { display: inline-flex; align-items: center; border: 2px solid var(--borde); border-radius: 999px; background: #fff; overflow: hidden; }
+    .cantidad button { width: 44px; height: 44px; border: 0; background: transparent; color: var(--tinta); font: 700 1.3rem/1 var(--fuente-texto); cursor: pointer; }
+    .cantidad input { width: 3rem; height: 44px; border: 0; background: transparent; color: var(--tinta); font: 800 1rem var(--fuente-texto); text-align: center; -moz-appearance: textfield; appearance: textfield; }
+    .cantidad input::-webkit-outer-spin-button, .cantidad input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .boton-comprar { flex: 1 1 180px; }
+    .boton:disabled, .cantidad button:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+    .compra-nota { margin: 0; font-size: .85rem; color: var(--texto-suave); }
+    .compra-aviso { margin: 0; font-size: .9rem; font-weight: 700; color: #B42318; }
+    .no-en-linea { margin: 0 0 .8rem; padding: .8rem 1rem; border-radius: 12px; background: #F2F4F7; color: var(--texto-suave); font-size: .95rem; }
+    .no-en-linea a { color: var(--azul); font-weight: 700; }
+
+    /* ---------- Carrito (panel lateral) ---------- */
+    .carrito { margin: 0 0 0 auto; padding: 0; border: 0; width: min(430px, 100%); max-width: 100%; height: 100dvh; max-height: 100dvh; background: var(--fondo); color: var(--texto); box-shadow: -20px 0 60px rgba(14,33,72,.3); }
+    .carrito[open] { display: flex; flex-direction: column; animation: carrito-entra .4s var(--suave); }
+    .carrito::backdrop { background: rgba(14,33,72,.55); }
+    @keyframes carrito-entra { from { transform: translate3d(100%,0,0); } }
+    .carrito-cabeza { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; background: var(--verde); border-bottom: 1px solid var(--verde-borde); }
+    .carrito-cabeza h2 { margin: 0; font-family: var(--fuente-titulos); font-size: 1.35rem; color: var(--tinta); }
+    .carrito-cabeza h2 span { font-family: var(--fuente-texto); font-size: .95rem; font-weight: 700; color: var(--verde-hoja); }
+    .carrito-cerrar { width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,.85); color: var(--tinta); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+    .carrito-cerrar svg { width: 20px; height: 20px; }
+    .carrito-cuerpo { flex: 1; overflow: auto; overscroll-behavior: contain; padding: 1rem 1.25rem; }
+    .carrito-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; }
+    .carrito-item { display: grid; grid-template-columns: 72px 1fr; gap: .9rem; padding: .8rem; background: #fff; border: 1px solid var(--borde); border-radius: 16px; }
+    .carrito-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 12px; background: var(--verde-suave); }
+    .carrito-item-info { min-width: 0; display: grid; gap: .3rem; }
+    .carrito-item-titulo { display: flex; justify-content: space-between; gap: .6rem; align-items: start; }
+    .carrito-item-titulo strong { font-size: .98rem; line-height: 1.25; color: var(--tinta); }
+    .carrito-item-titulo b { white-space: nowrap; color: var(--tinta); }
+    .carrito-item small { color: var(--texto-suave); font-size: .82rem; }
+    .carrito-item-fila { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-top: .2rem; }
+    .cantidad-chica button { width: 36px; height: 36px; font-size: 1.1rem; }
+    .cantidad-chica input { width: 2.4rem; height: 36px; font-size: .95rem; }
+    .carrito-quitar { border: 0; background: none; color: var(--texto-suave); font: 700 .85rem var(--fuente-texto); cursor: pointer; display: inline-flex; align-items: center; gap: .3rem; padding: .4rem; border-radius: 8px; }
+    .carrito-quitar:hover { color: #B42318; background: #FEF3F2; }
+    .carrito-quitar svg { width: 16px; height: 16px; }
+    .carrito-vacio { display: grid; justify-items: center; gap: .8rem; padding: 3rem 1rem; text-align: center; color: var(--texto-suave); }
+    .carrito-vacio svg { width: 64px; height: 64px; color: var(--verde-borde); }
+    .carrito-vacio strong { color: var(--tinta); font-size: 1.1rem; }
+    .carrito-pie { padding: 1rem 1.25rem calc(1rem + env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid var(--borde); display: grid; gap: .65rem; }
+    .carrito-pie[hidden] { display: none; }
+    .carrito-total { display: flex; justify-content: space-between; align-items: baseline; font-weight: 800; color: var(--tinta); font-size: 1.15rem; }
+    .carrito-pie .compra-nota { text-align: center; }
+    .carrito-pie .boton { width: 100%; }
+    .carrito-seguir { border: 0; background: none; color: var(--azul); font: 700 .95rem var(--fuente-texto); cursor: pointer; padding: .3rem; }
+    .carrito-cargando { opacity: .55; pointer-events: none; transition: opacity .2s ease; }
     .detalle-precio { margin: .2rem 0 .9rem; font-size: 1.5rem; font-weight: 800; color: var(--verde-hoja); }
     .insignia-nuevo { position: absolute; top: .8rem; right: .8rem; z-index: 1; background: var(--naranja); color: var(--tinta); font-size: .72rem; font-weight: 800; padding: .3rem .65rem; border-radius: 999px; }
     .producto-cuerpo { padding: 1.15rem 1.2rem 1.3rem; display: flex; flex-direction: column; flex: 1; }
@@ -408,7 +484,10 @@
     .presentaciones { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 .8rem; padding: 0; list-style: none; }
     .presentaciones li { font-size: .8rem; font-weight: 700; color: var(--verde-hoja); background: var(--verde-suave); padding: .25rem .65rem; border-radius: 999px; }
     .producto-desc { color: var(--texto-suave); font-size: .96rem; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .producto .boton { width: 100%; margin-top: .4rem; }
+    .producto-acciones { display: flex; gap: .6rem; margin-top: .4rem; }
+    .producto-acciones .boton { flex: 1; }
+    .boton-icono { flex: none !important; width: 48px; padding: 0; }
+    .boton-icono svg { width: 22px; height: 22px; }
     .nota-productos { margin-top: 2.2rem; display: flex; gap: .9rem; align-items: flex-start; background: var(--blanco); border: 1px solid var(--borde); border-radius: 14px; padding: 1rem 1.2rem; color: var(--texto-suave); font-size: .95rem; }
     .nota-productos svg { width: 22px; height: 22px; flex: none; color: var(--azul); margin-top: .15rem; }
     .nota-productos p { margin: 0; }
@@ -670,6 +749,11 @@
           </li>
         </ul>
       </nav>
+
+      <button class="carrito-boton" type="button" id="carrito-boton" aria-haspopup="dialog" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l2.3 11h10.8L21 7.5H6.4"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>
+        <span class="carrito-cuenta" id="carrito-cuenta" hidden>0</span>
+      </button>
     </div>
   </header>
 
@@ -804,7 +888,7 @@
       <div class="contenedor">
         <nav class="migas" aria-label="Ruta"><a href="#inicio">Inicio</a> / <span>Tienda online</span></nav>
         <h1 id="titulo-tienda">Tienda online Super Herbal</h1>
-        <p>Productos de nuestra propia marca. Toca uno para ver su información y girarlo. Pregunta por disponibilidad y haz tu pedido por WhatsApp o en tienda.</p>
+        <p>Productos de nuestra propia marca. Toca uno para ver su información y girarlo. Agrega los que quieras al carrito y realiza tu compra.</p>
         <div class="tienda-cabecera-fila">
           <span class="pastilla naranja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4h13v11H1z"/><path d="M14 8h4l4 4v3h-8z"/><circle cx="5.5" cy="17.5" r="2"/><circle cx="17.5" cy="17.5" r="2"/></svg>Envíos a domicilio</span>
           <span class="pastilla" id="total-productos"></span>
@@ -1168,7 +1252,7 @@
     const mapaEmbebido = (s) => "https://www.google.com/maps?q=" + encodeURIComponent(CONFIG.nombre + ", " + s.direccion) + "&output=embed";
     const normalizar = (t) => String(t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
     const nombreCompleto = (p) => (p.codigo ? p.codigo + " · " : "") + p.nombre;
-    const fmtPrecio = (n) => "$" + n.toLocaleString("es-MX") + " MXN";
+    const fmtPrecio = (n) => "$" + n.toLocaleString("es-MX", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + " MXN";
     const catDe = (p) => CATEGORIAS.find((c) => c.id === p.categoria) || { nombre: "" };
     const svg = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
     const ICO = {
@@ -1178,6 +1262,9 @@
       pin: svg('<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>'),
       reloj: svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
       hoja: svg('<path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15"/><path d="M5 19l7-7"/>'),
+      carrito: svg('<path d="M3 4h2.2l2.3 11h10.8L21 7.5H6.4"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/>'),
+      carritoMas: svg('<path d="M2.5 4h2.2l2.3 11h10.8l1.6-5.5"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="16.5" cy="19.5" r="1.4"/><path d="M15.5 2.5v6M12.5 5.5h6"/>'),
+      basura: svg('<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>'),
       wa: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.5-.3z"/></svg>',
       camion: svg('<path d="M1 4h13v11H1z"/><path d="M14 8h4l4 4v3h-8z"/><circle cx="5.5" cy="17.5" r="2"/><circle cx="17.5" cy="17.5" r="2"/>'),
       ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>',
@@ -1190,6 +1277,42 @@
       p._texto = normalizar([p.codigo, p.nombre, p.descripcion, catDe(p).nombre, ...p.presentaciones,
         ...(p.ficha || []).map((f) => [].concat(f.v).join(" "))].join(" "));
     });
+
+    // ---------- Conexión con Shopify ----------
+    // Solo funciona cuando la página corre como tema de Shopify: el tema pone en
+    // window.SHOPIFY_PRODUCTOS los productos dados de alta en Shopify. Cada producto de
+    // esta lista se vincula con el de Shopify que tenga el mismo nombre (o el identificador
+    // que pongas en "handle"). Si no hay producto en Shopify, se queda con WhatsApp.
+    const clave = (t) => normalizar(t).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    const SHOP = Array.isArray(window.SHOPIFY_PRODUCTOS) ? window.SHOPIFY_PRODUCTOS : [];
+    PRODUCTOS.forEach((p) => {
+      const claves = new Set([p.handle, p.nombre, p.nombre.replace(/\(.*?\)/g, ""), p.codigo && p.codigo + " " + p.nombre]
+        .filter(Boolean).map(clave));
+      const sp = SHOP.find((x) => claves.has(x.handle) || claves.has(clave(x.titulo)));
+      if (sp && Array.isArray(sp.variantes) && sp.variantes.length) p.shop = sp;
+    });
+    // En Shopify se compra con el carrito de Shopify; fuera de Shopify (GitHub), el carrito
+    // se guarda en el navegador y el pedido se manda por WhatsApp.
+    const enShopify = Array.isArray(window.SHOPIFY_PRODUCTOS);
+    const variantesDe = (p) => p.shop ? p.shop.variantes
+      : (!enShopify && p.precio ? [{ id: "local-" + p._slug, titulo: "Default Title", precio: Math.round(p.precio * 100), disponible: true, inventario: null, sobreventa: "deny" }] : []);
+    const sePuedeComprar = (p) => variantesDe(p).length > 0;
+    const hayDisponible = (p) => variantesDe(p).some((v) => v.disponible);
+    const maximoDe = (v) => (v.inventario != null && v.sobreventa !== "continue" ? Math.max(0, v.inventario) : 99);
+    const buscarVariante = (id) => {
+      for (const p of PRODUCTOS) { const v = variantesDe(p).find((x) => String(x.id) === String(id)); if (v) return { p, v }; }
+      return null;
+    };
+    const insigniaPrecio = (p) => {
+      const arriba = p.nuevo ? ' style="top:2.6rem"' : "";
+      if (p.shop) {
+        if (!hayDisponible(p)) return `<span class="insignia-precio agotado"${arriba}>Agotado</span>`;
+        const precios = p.shop.variantes.map((v) => v.precio);
+        return `<span class="insignia-precio"${arriba}>${new Set(precios).size > 1 ? "Desde " : ""}${fmtPrecio(Math.min(...precios) / 100)}</span>`;
+      }
+      return p.precio ? `<span class="insignia-precio"${arriba}>${fmtPrecio(p.precio)}</span>` : "";
+    };
+    const raizTienda = () => (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || "/";
 
     // ---------- Imágenes fijas y favicon ----------
     $$("[data-img]").forEach((el) => { el.src = imagen(el.dataset.img); });
@@ -1264,14 +1387,17 @@
         <button type="button" class="producto-foto" data-abrir="${p._i}" aria-label="Ver ${escapar(nombreCompleto(p))}">
           <span class="insignia">${escapar(p.codigo || "Super Herbal")}</span>
           ${p.nuevo ? `<span class="insignia-nuevo">${escapar(p.nuevo)}</span>` : ""}
-          ${p.precio ? `<span class="insignia-precio"${p.nuevo ? ' style="top:2.6rem"' : ""}>${fmtPrecio(p.precio)}</span>` : ""}
+          ${insigniaPrecio(p)}
           ${p.foto ? `<img src="${escapar(imagen(p.foto))}" alt="${escapar(p.nombre)} de Super Herbal" loading="lazy" decoding="async" width="640" height="640">` : ""}
         </button>
         <div class="producto-cuerpo">
           <h3>${escapar(p.nombre)}</h3>
           <ul class="presentaciones">${p.presentaciones.map((x) => `<li>${escapar(x)}</li>`).join("")}</ul>
           <p class="producto-desc">${p.descripcion ? escapar(p.descripcion) : pendiente("[Agregar descripción breve]")}</p>
-          <button type="button" class="boton boton-azul" data-abrir="${p._i}">Ver producto ${ICO.flecha}</button>
+          <div class="producto-acciones">
+            <button type="button" class="boton boton-azul" data-abrir="${p._i}">Ver producto ${ICO.flecha}</button>
+            ${sePuedeComprar(p) ? `<button type="button" class="boton boton-amarillo boton-icono" data-rapido="${p._i}" aria-label="${hayDisponible(p) ? "Agregar " + escapar(p.nombre) + " al carrito" : escapar(p.nombre) + " agotado"}" title="${hayDisponible(p) ? "Agregar al carrito" : "Agotado"}"${hayDisponible(p) ? "" : " disabled"}>${ICO.carritoMas}</button>` : ""}
+          </div>
         </div>
       </article>`;
 
@@ -1661,6 +1787,169 @@
       }).join("");
     };
 
+    // ---------- Carrito ----------
+    let compra = null;
+    const Carrito = (() => {
+      let lineas = [];
+      const CLAVE = "superherbal-carrito";
+      const pedir = async (url, cuerpo) => {
+        const r = await fetch(raizTienda() + url, cuerpo ? { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(cuerpo) }
+          : { headers: { Accept: "application/json" } });
+        const datos = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(datos.description || datos.message || "No se pudo actualizar el carrito. Intenta de nuevo.");
+        return datos;
+      };
+      const desdeShopify = (c) => {
+        lineas = (c.items || []).map((it) => {
+          const hallado = buscarVariante(it.variant_id);
+          return {
+            clave: it.key, id: it.variant_id, cantidad: it.quantity, precio: it.final_price,
+            titulo: hallado ? hallado.p.nombre : it.product_title,
+            sub: it.variant_title && it.variant_title !== "Default Title" ? it.variant_title : "",
+            imagen: hallado && hallado.p.foto ? imagen(hallado.p.foto) : it.image || imagen("logo"),
+            maximo: hallado ? maximoDe(hallado.v) : 99
+          };
+        });
+      };
+      const leerLocal = () => { try { return JSON.parse(localStorage.getItem(CLAVE)) || []; } catch (e) { return []; } };
+      const guardarLocal = (items) => { try { localStorage.setItem(CLAVE, JSON.stringify(items)); } catch (e) { /* sin almacenamiento: el carrito dura mientras la página esté abierta */ } memoria = items; };
+      let memoria = null;
+      const desdeLocal = () => {
+        const items = memoria || leerLocal();
+        lineas = items.map((it) => {
+          const hallado = buscarVariante(it.id);
+          if (!hallado) return null;
+          return { clave: it.id, id: it.id, cantidad: Math.min(it.cantidad, maximoDe(hallado.v)), precio: hallado.v.precio,
+            titulo: hallado.p.nombre, sub: "", imagen: imagen(hallado.p.foto || "logo"), maximo: maximoDe(hallado.v) };
+        }).filter(Boolean);
+      };
+      const local = () => lineas.map((l) => ({ id: l.id, cantidad: l.cantidad }));
+      return {
+        get lineas() { return lineas; },
+        get total() { return lineas.reduce((t, l) => t + l.precio * l.cantidad, 0); },
+        get piezas() { return lineas.reduce((t, l) => t + l.cantidad, 0); },
+        cantidadDe(id) { return lineas.filter((l) => String(l.id) === String(id)).reduce((t, l) => t + l.cantidad, 0); },
+        async cargar() {
+          if (enShopify) desdeShopify(await pedir("cart.js")); else desdeLocal();
+          pintarCarrito();
+        },
+        async agregar(v, n) {
+          const libre = maximoDe(v) - this.cantidadDe(v.id);
+          if (libre <= 0) throw new Error("Ya tienes en tu carrito todas las piezas disponibles.");
+          const cuantas = Math.min(n, libre);
+          if (enShopify) { await pedir("cart/add.js", { items: [{ id: v.id, quantity: cuantas }] }); desdeShopify(await pedir("cart.js")); }
+          else {
+            const items = local(), ya = items.find((x) => x.id === v.id);
+            if (ya) ya.cantidad += cuantas; else items.push({ id: v.id, cantidad: cuantas });
+            guardarLocal(items); desdeLocal();
+          }
+          pintarCarrito(true);
+          if (cuantas < n) alertaCarrito(`Solo había ${libre} ${libre === 1 ? "pieza disponible" : "piezas disponibles"}; agregamos ${cuantas}.`);
+        },
+        async cambiar(clave, n) {
+          const l = lineas.find((x) => String(x.clave) === String(clave));
+          if (!l) return;
+          n = Math.max(0, Math.min(n, l.maximo));
+          if (enShopify) desdeShopify(await pedir("cart/change.js", { id: l.clave, quantity: n }));
+          else {
+            const items = local().map((x) => (String(x.id) === String(clave) ? { ...x, cantidad: n } : x)).filter((x) => x.cantidad > 0);
+            guardarLocal(items); desdeLocal();
+          }
+          pintarCarrito();
+        },
+        comprar() {
+          if (!lineas.length) return;
+          if (enShopify) { location.href = raizTienda() + "checkout"; return; }
+          const lista = lineas.map((l) => `• ${l.cantidad} × ${l.titulo} (${fmtPrecio(l.precio / 100)} c/u) = ${fmtPrecio(l.precio * l.cantidad / 100)}`).join("\n");
+          window.open(urlWA(`Hola, quiero hacer este pedido:\n${lista}\n\nTotal: ${fmtPrecio(this.total / 100)}\n¿Me confirman el costo de envío a mi domicilio?`), "_blank", "noopener");
+        }
+      };
+    })();
+
+    const cajaCarrito = document.createElement("dialog");
+    cajaCarrito.className = "carrito";
+    cajaCarrito.setAttribute("aria-labelledby", "carrito-titulo");
+    cajaCarrito.innerHTML = `
+      <div class="carrito-cabeza">
+        <h2 id="carrito-titulo">Tu carrito <span data-carrito-piezas></span></h2>
+        <button type="button" class="carrito-cerrar" data-cerrar-carrito aria-label="Cerrar carrito">${ICO.x}</button>
+      </div>
+      <div class="carrito-cuerpo" data-carrito-cuerpo></div>
+      <div class="carrito-pie" data-carrito-pie hidden>
+        <p class="compra-aviso" data-carrito-aviso hidden></p>
+        <div class="carrito-total"><span>Subtotal</span><span data-carrito-total></span></div>
+        <p class="compra-nota">${enShopify ? "El costo de envío se calcula al pagar, según tu dirección." : "Al realizar la compra te enviamos a WhatsApp para confirmar tu pedido y el costo de envío."}</p>
+        <button type="button" class="boton boton-amarillo" data-realizar-compra>Realizar compra ${ICO.flecha}</button>
+        <button type="button" class="carrito-seguir" data-cerrar-carrito>Seguir comprando</button>
+      </div>`;
+    document.body.appendChild(cajaCarrito);
+    const botonCarrito = $("#carrito-boton"), cuentaCarrito = $("#carrito-cuenta");
+
+    function alertaCarrito(texto) {
+      const a = $("[data-carrito-aviso]", cajaCarrito);
+      a.textContent = texto; a.hidden = !texto;
+    }
+    function pintarCarrito(salta) {
+      const n = Carrito.piezas;
+      cuentaCarrito.textContent = String(n);
+      cuentaCarrito.hidden = n === 0;
+      botonCarrito.setAttribute("aria-label", n ? `Abrir carrito, ${n} ${n === 1 ? "producto" : "productos"}` : "Abrir carrito, vacío");
+      if (salta) { cuentaCarrito.classList.remove("salta"); void cuentaCarrito.offsetWidth; cuentaCarrito.classList.add("salta"); }
+      $("[data-carrito-piezas]", cajaCarrito).textContent = n ? `(${n} ${n === 1 ? "pieza" : "piezas"})` : "";
+      const cuerpo = $("[data-carrito-cuerpo]", cajaCarrito), pie = $("[data-carrito-pie]", cajaCarrito);
+      pie.hidden = n === 0;
+      $("[data-carrito-total]", cajaCarrito).textContent = fmtPrecio(Carrito.total / 100);
+      cuerpo.innerHTML = n === 0 ? `
+        <div class="carrito-vacio">${ICO.carrito}<strong>Tu carrito está vacío</strong><span>Agrega productos desde la tienda online.</span>
+          <button type="button" class="boton boton-azul" data-ir-tienda>Ver productos ${ICO.flecha}</button></div>` :
+        `<ul class="carrito-lista">${Carrito.lineas.map((l) => `
+          <li class="carrito-item">
+            <img src="${escapar(l.imagen)}" alt="" width="72" height="72" loading="lazy">
+            <div class="carrito-item-info">
+              <div class="carrito-item-titulo"><strong>${escapar(l.titulo)}</strong><b>${fmtPrecio(l.precio * l.cantidad / 100)}</b></div>
+              <small>${l.sub ? escapar(l.sub) + " · " : ""}${fmtPrecio(l.precio / 100)} c/u</small>
+              <div class="carrito-item-fila">
+                <div class="cantidad cantidad-chica">
+                  <button type="button" data-c-cambiar="${escapar(l.clave)}" data-c-delta="-1" aria-label="Quitar uno de ${escapar(l.titulo)}">−</button>
+                  <input type="number" min="0" max="${l.maximo}" value="${l.cantidad}" inputmode="numeric" aria-label="Cantidad de ${escapar(l.titulo)}" data-c-campo="${escapar(l.clave)}">
+                  <button type="button" data-c-cambiar="${escapar(l.clave)}" data-c-delta="1" aria-label="Agregar uno de ${escapar(l.titulo)}"${l.cantidad >= l.maximo ? " disabled" : ""}>+</button>
+                </div>
+                <button type="button" class="carrito-quitar" data-c-quitar="${escapar(l.clave)}">${ICO.basura} Quitar</button>
+              </div>
+            </div>
+          </li>`).join("")}</ul>`;
+      if (compra && dialogo.open) actualizarCompra();
+    }
+    function abrirCarrito() {
+      alertaCarrito("");
+      if (!cajaCarrito.open) cajaCarrito.showModal();
+      document.documentElement.style.overflow = "hidden";
+    }
+    const conEspera = (promesa) => {
+      cajaCarrito.classList.add("carrito-cargando");
+      return promesa.catch((err) => alertaCarrito(err.message)).finally(() => cajaCarrito.classList.remove("carrito-cargando"));
+    };
+    botonCarrito.addEventListener("click", () => { abrirCarrito(); conEspera(Carrito.cargar()); });
+    cajaCarrito.addEventListener("click", (e) => {
+      if (e.target === cajaCarrito || e.target.closest("[data-cerrar-carrito]")) { cajaCarrito.close(); return; }
+      if (e.target.closest("[data-ir-tienda]")) { cajaCarrito.close(); if (dialogo.open) dialogo.close(); location.hash = "#tienda"; return; }
+      if (e.target.closest("[data-realizar-compra]")) { Carrito.comprar(); return; }
+      const cambio = e.target.closest("[data-c-cambiar]");
+      if (cambio) {
+        const l = Carrito.lineas.find((x) => String(x.clave) === cambio.dataset.cCambiar);
+        if (l) conEspera(Carrito.cambiar(l.clave, l.cantidad + +cambio.dataset.cDelta));
+        return;
+      }
+      const quitar = e.target.closest("[data-c-quitar]");
+      if (quitar) conEspera(Carrito.cambiar(quitar.dataset.cQuitar, 0));
+    });
+    cajaCarrito.addEventListener("change", (e) => {
+      const campo = e.target.closest("[data-c-campo]");
+      if (campo) conEspera(Carrito.cambiar(campo.dataset.cCampo, parseInt(campo.value, 10) || 0));
+    });
+    cajaCarrito.addEventListener("close", () => { if (!dialogo.open) document.documentElement.style.overflow = ""; });
+    conEspera(Carrito.cargar());
+
     function pintarFicha(i) {
       const p = PRODUCTOS[i];
       if (visor) visor.destruir();
@@ -1694,12 +1983,27 @@
           <div class="detalle-info">
             <p class="etiqueta">${escapar(catDe(p).nombre)}${p.codigo ? " · " + escapar(p.codigo) : ""}</p>
             <h2 id="detalle-titulo">${escapar(p.nombre)}</h2>
-            ${p.precio ? `<p class="detalle-precio">${fmtPrecio(p.precio)}</p>` : ""}
+            ${sePuedeComprar(p) || p.precio ? `<p class="detalle-precio" data-precio>${p.precio ? fmtPrecio(p.precio) : ""}</p>` : ""}
             <ul class="presentaciones">${p.presentaciones.map((x) => `<li>${escapar(x)}</li>`).join("")}${p.nuevo ? `<li style="background:#FFE8D2;color:#8A3D00">${escapar(p.nuevo)}</li>` : ""}</ul>
             <p class="detalle-desc">${p.descripcion ? escapar(p.descripcion) : pendiente("[Agregar descripción breve aprobada por el negocio]")}</p>
+            ${sePuedeComprar(p) ? `<div class="compra">
+              ${variantesDe(p).length > 1 ? `<div class="variantes" role="radiogroup" aria-label="Presentación">${variantesDe(p).map((v, k) =>
+                `<button type="button" class="variante" role="radio" aria-checked="false" data-variante="${k}">${escapar(v.titulo)}</button>`).join("")}</div>` : ""}
+              <p class="existencias" data-existencias aria-live="polite"></p>
+              <div class="compra-fila">
+                <div class="cantidad">
+                  <button type="button" data-cant="-1" aria-label="Quitar uno">−</button>
+                  <input type="number" min="1" value="1" inputmode="numeric" aria-label="Cantidad" data-cantidad>
+                  <button type="button" data-cant="1" aria-label="Agregar uno">+</button>
+                </div>
+                <button type="button" class="boton boton-amarillo boton-comprar" data-comprar>${ICO.carritoMas} Agregar al carrito</button>
+              </div>
+              <p class="compra-aviso" data-aviso-compra hidden></p>
+            </div>
+            <p class="detalle-envio">${ICO.camion} ${enShopify ? "Envío a domicilio: el costo se calcula al pagar, según tu dirección." : "Hacemos envíos a domicilio. El costo depende de tu dirección."}</p>` :
+            `<p class="no-en-linea">Este producto todavía no está disponible para comprar en línea. <a href="${urlWA(`Hola, quiero información sobre ${nombreCompleto(p)}.`)}" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>.</p>
+            <p class="detalle-envio">${ICO.camion} Hacemos envíos a domicilio.</p>`}
             <dl class="ficha">${filasFicha(p)}</dl>
-            <p class="detalle-envio">${ICO.camion} Hacemos envíos a domicilio. Pregunta por disponibilidad.</p>
-            <div class="detalle-acciones">${accionesPedido(`Hola, quiero pedir ${nombreCompleto(p)}.`)}<a class="boton boton-contorno" href="#ubicacion">${ICO.pin} Sucursales</a></div>
             <p class="detalle-aviso">Información de carácter informativo; no sustituye la orientación de un profesional de la salud. Lee siempre la etiqueta del producto.</p>
           </div>
         </div>
@@ -1708,7 +2012,36 @@
           <button type="button" data-ir="${sig._i}"><small>Siguiente →</small><strong>${escapar(nombreCompleto(sig))}</strong></button>
         </nav>`;
       visor = crearVisor($(".visor", dialogo), p);
+      compra = sePuedeComprar(p) ? { p, sel: Math.max(0, variantesDe(p).findIndex((v) => v.disponible)) } : null;
+      if (compra) actualizarCompra();
       dialogo.scrollTop = 0;
+    }
+    function actualizarCompra() {
+      const v = variantesDe(compra.p)[compra.sel];
+      const precio = $("[data-precio]", dialogo), info = $("[data-existencias]", dialogo);
+      const boton = $("[data-comprar]", dialogo), campo = $("[data-cantidad]", dialogo);
+      $$("[data-variante]", dialogo).forEach((b) => b.setAttribute("aria-checked", String(+b.dataset.variante === compra.sel)));
+      if (precio) precio.textContent = fmtPrecio(v.precio / 100);
+      const limita = v.inventario != null && v.sobreventa !== "continue";
+      const maximo = Math.max(0, maximoDe(v) - Carrito.cantidadDe(v.id));
+      info.className = "existencias";
+      info.hidden = !compra.p.shop;
+      if (!v.disponible) { info.textContent = "Agotado"; info.classList.add("agotado"); }
+      else if (!limita) info.textContent = "Disponible";
+      else if (v.inventario <= 5) { info.textContent = `¡Quedan solo ${v.inventario} ${v.inventario === 1 ? "pieza" : "piezas"}!`; info.classList.add("pocas"); }
+      else info.textContent = `Disponibles: ${v.inventario} piezas`;
+      campo.max = String(Math.max(1, maximo));
+      campo.value = String(Math.min(Math.max(1, parseInt(campo.value, 10) || 1), Math.max(1, maximo)));
+      const enCarrito = Carrito.cantidadDe(v.id);
+      const puede = v.disponible && maximo > 0;
+      boton.disabled = !puede;
+      boton.innerHTML = !v.disponible ? "Agotado" : puede ? `${ICO.carritoMas} Agregar al carrito` : "Ya tienes todas en tu carrito";
+      $$("[data-cant]", dialogo).forEach((b) => { b.disabled = !puede; });
+      campo.disabled = !puede;
+      const aviso = $("[data-aviso-compra]", dialogo);
+      aviso.hidden = !(enCarrito && limita);
+      aviso.style.color = "var(--texto-suave)";
+      aviso.textContent = enCarrito ? `Ya tienes ${enCarrito} en tu carrito.` : "";
     }
     function abrirFicha(i) {
       pintarFicha(i);
@@ -1722,6 +2055,16 @@
       if (location.hash === destino) ruta(); else location.hash = destino;
     }
     document.addEventListener("click", (e) => {
+      const r = e.target.closest("[data-rapido]");
+      if (r) {
+        const p = PRODUCTOS[+r.dataset.rapido], vs = variantesDe(p);
+        if (vs.length > 1) { verProducto(p._i); return; }
+        const v = vs.find((x) => x.disponible);
+        if (!v) return;
+        r.disabled = true;
+        Carrito.agregar(v, 1).then(abrirCarrito).catch((err) => alertaCarrito(err.message)).finally(() => { r.disabled = false; });
+        return;
+      }
       const b = e.target.closest("[data-abrir]");
       if (b) { verProducto(+b.dataset.abrir); return; }
       const t = e.target.closest(".producto");
@@ -1730,8 +2073,27 @@
     dialogo.addEventListener("click", (e) => {
       if (e.target === dialogo || e.target.closest("[data-cerrar]")) { dialogo.close(); return; }
       const ir = e.target.closest("[data-ir]");
-      if (ir) verProducto(+ir.dataset.ir);
+      if (ir) { verProducto(+ir.dataset.ir); return; }
+      if (!compra) return;
+      const variante = e.target.closest("[data-variante]");
+      if (variante) { compra.sel = +variante.dataset.variante; actualizarCompra(); return; }
+      const cant = e.target.closest("[data-cant]");
+      if (cant) { const c = $("[data-cantidad]", dialogo); c.value = String((parseInt(c.value, 10) || 1) + +cant.dataset.cant); actualizarCompra(); return; }
+      const boton = e.target.closest("[data-comprar]");
+      if (boton && !boton.disabled) {
+        const v = variantesDe(compra.p)[compra.sel];
+        const n = Math.max(1, parseInt($("[data-cantidad]", dialogo).value, 10) || 1);
+        boton.disabled = true; boton.textContent = "Agregando…";
+        Carrito.agregar(v, n).then(() => {
+          $("[data-cantidad]", dialogo).value = "1";
+          abrirCarrito();
+        }).catch((err) => {
+          const aviso = $("[data-aviso-compra]", dialogo);
+          aviso.hidden = false; aviso.style.color = ""; aviso.textContent = err.message;
+        }).finally(() => { if (compra) actualizarCompra(); });
+      }
     });
+    dialogo.addEventListener("change", (e) => { if (compra && e.target.matches("[data-cantidad]")) actualizarCompra(); });
     dialogo.addEventListener("close", () => {
       if (visor) { visor.destruir(); visor = null; }
       document.documentElement.style.overflow = "";
