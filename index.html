@@ -7,28 +7,28 @@
 
   <!-- ============================================================
        SEO LOCAL BÁSICO
-       Cuando tengas dominio, reemplaza [AGREGAR-DOMINIO] en canonical y og:url.
+       Dominio oficial: https://superherbal.com.mx/ (canonical y og:url siempre con este dominio).
        ============================================================ -->
-  <title>Tienda Naturista Super Herbal | Villa de Álvarez y Colima</title>
-  <meta name="description" content="Tienda Naturista Super Herbal en Villa de Álvarez y Colima. Conoce los productos de nuestra marca Super Herbal en nuestra tienda online. Hacemos envíos a domicilio.">
+  <title>Tienda Naturista Super Herbal | Villa de Álvarez, Colima y Cuauhtémoc</title>
+  <meta name="description" content="Tienda Naturista Super Herbal en Villa de Álvarez, Colima y Cuauhtémoc. Conoce los productos de nuestra marca Super Herbal en nuestra tienda online. Hacemos envíos a toda la República Mexicana.">
   <meta name="keywords" content="tienda naturista Villa de Álvarez, tienda naturista Colima, Super Herbal, productos naturistas Colima, Dren-a-rren, Super Flex">
   <meta name="theme-color" content="#8CC63F">
-  <link rel="canonical" href="https://[AGREGAR-DOMINIO]/">
+  <link rel="canonical" href="https://superherbal.com.mx/">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
-  <meta property="og:title" content="Tienda Naturista Super Herbal | Villa de Álvarez y Colima">
+  <meta property="og:title" content="Tienda Naturista Super Herbal | Villa de Álvarez, Colima y Cuauhtémoc">
   <meta property="og:description" content="Productos de la marca Super Herbal, atención personalizada y envíos a domicilio.">
-  <meta property="og:url" content="https://[AGREGAR-DOMINIO]/">
+  <meta property="og:url" content="https://superherbal.com.mx/">
 
-  <!-- Datos estructurados para Google (negocio local). Incluye las dos sucursales con su horario. -->
+  <!-- Datos estructurados para Google (negocio local). Incluye las tres sucursales. -->
   <script type="application/ld+json">
   [
   {
     "@context": "https://schema.org",
     "@type": "Store",
     "name": "Tienda Naturista Super Herbal – Villa de Álvarez",
-    "description": "Tienda naturista con productos de la marca Super Herbal. Envíos a domicilio.",
+    "description": "Tienda naturista con productos de la marca Super Herbal. Envíos a toda la República Mexicana.",
     "telephone": "+52 312 270 1111",
     "address": {
       "@type": "PostalAddress",
@@ -46,8 +46,8 @@
     "@context": "https://schema.org",
     "@type": "Store",
     "name": "Tienda Naturista Super Herbal – Colima Centro",
-    "description": "Tienda naturista con productos de la marca Super Herbal. Envíos a domicilio.",
-    "telephone": "+52 312 270 1111",
+    "description": "Tienda naturista con productos de la marca Super Herbal. Envíos a toda la República Mexicana.",
+    "telephone": "+52 312 125 2834",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Av. San Fernando #300, Local 3",
@@ -56,6 +56,23 @@
       "addressCountry": "MX"
     },
     "openingHours": ["Mo-Fr 08:30-20:00", "Sa 08:30-15:00"],
+    "sameAs": ["https://www.instagram.com/tiendanaturistasuperherbal/"],
+    "brand": { "@type": "Brand", "name": "Super Herbal" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Tienda Naturista Super Herbal – Cuauhtémoc",
+    "description": "Tienda naturista con productos de la marca Super Herbal. Envíos a toda la República Mexicana.",
+    "telephone": "+52 312 298 6432",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Melchor Ocampo 12, Centro",
+      "addressLocality": "Cuauhtémoc",
+      "addressRegion": "Colima",
+      "postalCode": "28500",
+      "addressCountry": "MX"
+    },
     "sameAs": ["https://www.instagram.com/tiendanaturistasuperherbal/"],
     "brand": { "@type": "Brand", "name": "Super Herbal" }
   }
@@ -343,8 +360,15 @@
     .nota-opiniones { position: relative; margin-top: 2rem; font-size: .93rem; color: #AEBAD2; max-width: 720px; }
 
     /* Ubicación / sucursales */
-    .sucursales { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 1.25rem; margin-bottom: 1.25rem; }
-    .sucursal { background: var(--blanco); border: 1px solid var(--borde); border-radius: 24px; padding: clamp(1.3rem, 3vw, 1.9rem); box-shadow: var(--sombra); display: flex; flex-direction: column; }
+    .sucursales { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.25rem; margin-bottom: 1.5rem; }
+    .sucursal { background: var(--blanco); border: 1px solid var(--borde); border-radius: 24px; overflow: hidden; box-shadow: var(--sombra); display: flex; flex-direction: column; }
+    .sucursal-foto { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--verde-suave); }
+    .sucursal-foto > img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--suave); }
+    .sucursal:hover .sucursal-foto > img { transform: scale(1.05); }
+    .sucursal-sin-foto { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: .65rem; color: var(--verde-hoja); font-weight: 800; letter-spacing: .02em;
+      background: radial-gradient(circle at 25% 20%, rgba(255,255,255,.9) 0, transparent 55%), linear-gradient(135deg, var(--verde-suave), #DCEFC4); }
+    .sucursal-sin-foto img { width: 76px; height: 76px; border-radius: 50%; background: #fff; box-shadow: var(--sombra); }
+    .sucursal-cuerpo { flex: 1; display: flex; flex-direction: column; padding: clamp(1.2rem, 2.5vw, 1.6rem); }
     .sucursal h3 { display: flex; align-items: center; gap: .55rem; margin-bottom: 1rem; }
     .sucursal h3 span { font-family: var(--fuente-texto); font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; background: var(--verde-suave); color: var(--verde-hoja); padding: .25rem .6rem; border-radius: 999px; }
     .dato { display: flex; gap: .85rem; padding: .75rem 0; border-bottom: 1px solid var(--borde); }
@@ -356,7 +380,7 @@
     .dato dd small { display: block; font-weight: 500; color: var(--texto-suave); }
     .datos-lista { margin: 0 0 1.2rem; }
     .sucursal-acciones { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: auto; }
-    .sucursal-acciones .boton { flex: 1 1 170px; min-height: 46px; padding: .6rem 1rem; font-size: .95rem; }
+    .sucursal-acciones .boton { flex: 1 1 130px; min-height: 46px; padding: .6rem 1rem; font-size: .95rem; }
     .mapa { position: relative; min-height: 360px; border-radius: 24px; overflow: hidden; border: 1px solid var(--borde); box-shadow: var(--sombra); background: #E8EEF6; }
     .mapa iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .mapa-cargar { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 1.5rem; background: linear-gradient(rgba(232,238,246,.85), rgba(232,238,246,.85)), repeating-linear-gradient(45deg, #DCE5F1 0 2px, transparent 2px 22px); }
@@ -767,9 +791,9 @@
     <section class="hero" id="inicio" aria-labelledby="titulo-portada">
       <div class="contenedor hero-grid">
         <div>
-          <p class="etiqueta">Tienda naturista en Villa de Álvarez y Colima</p>
+          <p class="etiqueta">Tienda naturista en Villa de Álvarez, Colima y Cuauhtémoc</p>
           <h1 id="titulo-portada">Conoce la marca <span class="resaltado">Super Herbal</span></h1>
-          <p class="hero-texto">Los productos de nuestra propia marca, con la atención cercana de siempre. Visítanos en tienda o pide desde casa: hacemos envíos a domicilio.</p>
+          <p class="hero-texto">Los productos de nuestra propia marca, con la atención cercana de siempre. Visítanos en tienda o pide desde casa: hacemos envíos a toda la República Mexicana.</p>
           <div class="hero-acciones">
             <a class="boton boton-azul" href="#tienda">
               Ir a la tienda online
@@ -823,7 +847,7 @@
         <div class="tienda-foto"><img data-img="fachada-tienda" alt="Frente de Tienda Naturista Super Herbal en Villa de Álvarez" width="1100" height="825" loading="lazy"></div>
         <div class="tienda-texto">
           <p class="etiqueta">Nosotros</p>
-          <h2 id="titulo-nosotros">Tu tienda naturista en Villa de Álvarez y Colima</h2>
+          <h2 id="titulo-nosotros">Tu tienda naturista en Villa de Álvarez, Colima y Cuauhtémoc</h2>
           <p>En Tienda Naturista Super Herbal encontrarás los productos de nuestra marca y un amplio surtido de productos naturistas, con atención personalizada para orientarte en tu compra.</p>
           <div class="puntos">
             <div class="punto">
@@ -868,9 +892,9 @@
     <section class="seccion" id="ubicacion" aria-labelledby="titulo-ubicacion">
       <div class="contenedor">
         <div class="encabezado-seccion">
-          <p class="etiqueta">Visítanos</p>
-          <h2 id="titulo-ubicacion">Sucursales y contacto</h2>
-          <p>Visítanos en cualquiera de nuestras sucursales o pide a domicilio.</p>
+          <p class="etiqueta">Nuestras tiendas en Colima</p>
+          <h2 id="titulo-ubicacion">Siempre cerca de ti</h2>
+          <p>Estamos en Villa de Álvarez, Colima y Cuauhtémoc. ¡Donde estés, hay un Super Herbal cerca de ti!</p>
         </div>
         <div class="sucursales" id="sucursales"></div>
         <div class="mapa" id="mapa">
@@ -962,7 +986,7 @@
           <ul class="redes" id="redes"></ul>
         </div>
       </div>
-      <p class="footer-legal">© <span id="anio"></span> Tienda Naturista Super Herbal · Villa de Álvarez y Colima.</p>
+      <p class="footer-legal">© <span id="anio"></span> Tienda Naturista Super Herbal · Villa de Álvarez, Colima y Cuauhtémoc.</p>
     </div>
   </footer>
 
@@ -988,21 +1012,34 @@
         {
           nombre: "Villa de Álvarez",
           etiqueta: "Sucursal",
+          foto: "fachada-tienda",           // foto de la tienda (vacío = "Foto próximamente")
           direccion: "Av. Gral. Manuel Álvarez 30, Centro, 28970 Cdad. de Villa de Álvarez, Col.",
           referencia: "",
           telefono: "312 270 1111",
-          whatsapp: "",
+          whatsapp: "312 270 1111",       // los pedidos siempre van a este número (CONFIG.whatsapp)
           horario: ["Lunes a viernes: 9:00\u00a0a.m.\u00a0–\u00a08:00\u00a0p.m.", "Sábado: 9:00\u00a0a.m.\u00a0–\u00a02:00\u00a0p.m.", "Domingo: cerrado"],
           mapa: ""                         // enlace exacto de Google Maps (opcional)
         },
         {
           nombre: "Colima Centro",
           etiqueta: "Sucursal",
+          foto: "",
           direccion: "Av. San Fernando #300, Local 3, Colima, Col.",
           referencia: "Antes de llegar a Salud Digna",
-          telefono: "312 270 1111",
-          whatsapp: "312 270 1111",
+          telefono: "312 125 2834",
+          whatsapp: "",
           horario: ["Lunes a viernes: 8:30\u00a0a.m.\u00a0–\u00a08:00\u00a0p.m.", "Sábado: 8:30\u00a0a.m.\u00a0–\u00a03:00\u00a0p.m.", "Domingo: cerrado"],
+          mapa: ""
+        },
+        {
+          nombre: "Cuauhtémoc",
+          etiqueta: "Sucursal",
+          foto: "",
+          direccion: "Melchor Ocampo 12, Centro, 28500 Cuauhtémoc, Col.",
+          referencia: "",
+          telefono: "312 298 6432",
+          whatsapp: "",
+          horario: [],                     // falta el horario de esta sucursal
           mapa: ""
         }
       ]
@@ -1355,12 +1392,18 @@
       const contacto = s.whatsapp
         ? `<a class="boton boton-whatsapp" href="${urlWA(msgGeneral, s.whatsapp)}" target="_blank" rel="noopener">${ICO.wa} WhatsApp</a>`
         : s.telefono ? `<a class="boton boton-amarillo" href="${telHref(s.telefono)}">${ICO.tel} Llamar</a>` : "";
+      const foto = s.foto
+        ? `<img src="${escapar(imagen(s.foto))}" alt="Tienda Naturista Super Herbal en ${escapar(s.nombre)}" width="640" height="400" loading="lazy" decoding="async">`
+        : `<div class="sucursal-sin-foto"><img src="${escapar(imagen("logo"))}" alt="" width="76" height="76" loading="lazy"><span>Foto próximamente</span></div>`;
       return `<article class="sucursal">
-        <h3>${escapar(s.nombre)} <span>${escapar(s.etiqueta || "Sucursal")}</span></h3>
-        <dl class="datos-lista">${filas.join("")}</dl>
-        <div class="sucursal-acciones">
-          <a class="boton boton-azul" href="${mapaDe(s)}" target="_blank" rel="noopener">${ICO.pin} Abrir en Google Maps</a>
-          ${contacto}
+        <div class="sucursal-foto">${foto}</div>
+        <div class="sucursal-cuerpo">
+          <h3>${escapar(s.nombre)} <span>${escapar(s.etiqueta || "Sucursal")}</span></h3>
+          <dl class="datos-lista">${filas.join("")}</dl>
+          <div class="sucursal-acciones">
+            <a class="boton boton-azul" href="${mapaDe(s)}" target="_blank" rel="noopener">${ICO.pin} Cómo llegar</a>
+            ${contacto}
+          </div>
         </div>
       </article>`;
     }).join("");
@@ -2000,9 +2043,9 @@
               </div>
               <p class="compra-aviso" data-aviso-compra hidden></p>
             </div>
-            <p class="detalle-envio">${ICO.camion} ${enShopify ? "Envío a domicilio: el costo se calcula al pagar, según tu dirección." : "Hacemos envíos a domicilio. El costo depende de tu dirección."}</p>` :
+            <p class="detalle-envio">${ICO.camion} ${enShopify ? "Hacemos envíos a toda la República Mexicana. El costo varía dependiendo de tu región y se calcula al pagar." : "Hacemos envíos a toda la República Mexicana. El costo varía dependiendo de tu región."}</p>` :
             `<p class="no-en-linea">Este producto todavía no está disponible para comprar en línea. <a href="${urlWA(`Hola, quiero información sobre ${nombreCompleto(p)}.`)}" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>.</p>
-            <p class="detalle-envio">${ICO.camion} Hacemos envíos a domicilio.</p>`}
+            <p class="detalle-envio">${ICO.camion} Hacemos envíos a toda la República Mexicana. El costo varía dependiendo de tu región.</p>`}
             <dl class="ficha">${filasFicha(p)}</dl>
             <p class="detalle-aviso">Información de carácter informativo; no sustituye la orientación de un profesional de la salud. Lee siempre la etiqueta del producto.</p>
           </div>
@@ -2111,7 +2154,7 @@
       if (vistaActual) { vistas[n].classList.remove("entrando"); void vistas[n].offsetWidth; vistas[n].classList.add("entrando"); }
       vistaActual = n;
       $$("[data-vista-link]").forEach((a) => (a.dataset.vistaLink === n ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current")));
-      document.title = n === "tienda" ? "Tienda online | Tienda Naturista Super Herbal" : "Tienda Naturista Super Herbal | Villa de Álvarez y Colima";
+      document.title = n === "tienda" ? "Tienda online | Tienda Naturista Super Herbal" : "Tienda Naturista Super Herbal | Villa de Álvarez, Colima y Cuauhtémoc";
       return true;
     }
     const irA = (el, suave) => {
