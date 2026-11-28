@@ -73,6 +73,7 @@
       "postalCode": "28500",
       "addressCountry": "MX"
     },
+    "openingHours": ["Mo-Fr 09:00-20:00", "Sa 09:00-14:30"],
     "sameAs": ["https://www.instagram.com/tiendanaturistasuperherbal/"],
     "brand": { "@type": "Brand", "name": "Super Herbal" }
   }
@@ -357,6 +358,70 @@
     .opinion blockquote::before { content: "“"; display: block; font-family: var(--fuente-titulos); font-size: 3.2rem; line-height: .7; color: var(--amarillo); margin-bottom: .4rem; }
     .opinion figcaption { font-size: .88rem; font-weight: 600; color: #9FB0CE; display: flex; align-items: center; gap: .5rem; }
     .opinion figcaption::before { content: ""; width: 18px; height: 2px; background: var(--verde); border-radius: 2px; }
+    /* ---------- Dejar opinión ---------- */
+    .oculto { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    .opinion[hidden] { display: none; }
+    .opinion-estrellas { display: flex; gap: 2px; }
+    .opinion-estrellas svg { width: 20px; height: 20px; fill: rgba(255,255,255,.22); }
+    .opinion-estrellas .llena svg { fill: var(--amarillo); }
+    .opinion-con-estrellas { justify-content: flex-start; }
+    .opinion-con-estrellas blockquote::before { display: none; }
+    .opinion-con-estrellas figcaption { margin-top: auto; }
+    .opiniones-mas { position: relative; display: flex; justify-content: center; margin-top: 1.5rem; }
+    .opiniones-mas:has(button[hidden]) { display: none; }
+    .boton-claro { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.55); }
+    .boton-claro:hover { background: rgba(255,255,255,.1); border-color: #fff; }
+    .opinar-cta { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem 2rem; margin-top: 2rem; padding: clamp(1.4rem, 3vw, 2rem) clamp(1.4rem, 3vw, 2.2rem); border-radius: var(--radio);
+      background: linear-gradient(120deg, rgba(255,201,40,.16), rgba(140,198,63,.14)); border: 1px solid rgba(255,201,40,.45); box-shadow: 0 0 0 6px rgba(255,201,40,.06); }
+    .opinar-cta-texto { flex: 1 1 340px; }
+    .opinar-cta h3 { margin: 0 0 .4rem; color: #fff; font-size: clamp(1.3rem, 2.6vw, 1.65rem); }
+    .opinar-cta p { margin: 0; color: #C9D3E6; }
+    .opinar-cta-accion { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.2rem; }
+    .opinar-rapido { display: flex; flex-direction: row-reverse; gap: .15rem; }
+    .opinar-rapido button { width: 46px; height: 46px; padding: 4px; border: 0; background: none; cursor: pointer; color: rgba(255,255,255,.28); transition: color .15s ease, transform .2s var(--suave); }
+    .opinar-rapido button svg { width: 100%; height: 100%; fill: currentColor; }
+    .opinar-rapido button:hover, .opinar-rapido button:hover ~ button, .opinar-rapido button:focus-visible, .opinar-rapido button:focus-visible ~ button { color: var(--amarillo); }
+    .opinar-rapido button:hover { transform: scale(1.15); }
+    .opinar-rapido:not(:hover):not(:focus-within) button { animation: estrella-brilla 3.2s ease-in-out infinite; }
+    .opinar-rapido:not(:hover):not(:focus-within) button:nth-child(1) { animation-delay: .4s; } .opinar-rapido:not(:hover):not(:focus-within) button:nth-child(2) { animation-delay: .3s; }
+    .opinar-rapido:not(:hover):not(:focus-within) button:nth-child(3) { animation-delay: .2s; } .opinar-rapido:not(:hover):not(:focus-within) button:nth-child(4) { animation-delay: .1s; }
+    @keyframes estrella-brilla { 0%, 70%, 100% { color: rgba(255,255,255,.28); } 80%, 90% { color: var(--amarillo); } }
+    @media (prefers-reduced-motion: reduce) { .opinar-rapido button { animation: none !important; } }
+    .opinar-boton { min-height: 50px; }
+    .opinar-producto { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: .4rem 1rem; margin: 0 0 1rem; padding: 1rem 1.1rem; border-radius: 16px; background: #FFF8E1; border: 1px solid #FFE08A; }
+    .opinar-producto-estrellas { display: flex; gap: 1px; color: var(--amarillo); }
+    .opinar-producto-estrellas .ico-estrella { width: 18px; height: 18px; fill: currentColor; }
+    .opinar-producto p { margin: 0; color: var(--tinta); font-size: .95rem; }
+    .opinar-producto .boton { grid-column: 1 / -1; justify-self: start; min-height: 44px; padding: .55rem 1.1rem; font-size: .95rem; }
+    .opinar { border: 0; padding: 0; width: min(500px, calc(100% - 1.5rem)); max-height: calc(100dvh - 1.5rem); margin: auto; border-radius: 26px; background: var(--fondo); color: var(--texto); box-shadow: 0 30px 80px rgba(14,33,72,.45); overflow: auto; overscroll-behavior: contain; }
+    .opinar::backdrop { background: rgba(14,33,72,.62); }
+    .opinar[open] { animation: det-entra .4s var(--suave); }
+    .opinar-cabeza { position: relative; padding: 1.5rem 1.5rem 1.1rem; background: linear-gradient(135deg, var(--tinta), #1F3E7A); color: #fff; text-align: center; }
+    .opinar-cabeza h2 { margin: 0; color: #fff; font-size: 1.6rem; }
+    .opinar-cabeza p { margin: .35rem 0 0; color: #C9D3E6; font-size: .95rem; }
+    .opinar-cabeza .carrito-cerrar { position: absolute; top: .8rem; right: .8rem; }
+    .opinar-cuerpo { padding: 1.3rem 1.5rem 1.5rem; display: grid; gap: 1rem; }
+    .opinar fieldset { margin: 0; padding: 0; border: 0; text-align: center; }
+    .opinar legend { margin: 0 auto .4rem; font-weight: 800; color: var(--tinta); }
+    .opinar-estrellas { display: inline-flex; flex-direction: row-reverse; gap: .2rem; }
+    .opinar-estrellas input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .opinar-estrellas label { width: 50px; height: 50px; padding: 4px; cursor: pointer; color: #D0D5DD; transition: color .15s ease, transform .2s var(--suave); }
+    .opinar-estrellas label svg { width: 100%; height: 100%; fill: currentColor; }
+    .opinar-estrellas label:hover, .opinar-estrellas label:hover ~ label, .opinar-estrellas input:checked ~ label { color: var(--amarillo); }
+    .opinar-estrellas label:hover { transform: scale(1.12); }
+    .opinar-estrellas input:focus-visible + label { outline: 3px solid var(--azul); outline-offset: 2px; border-radius: 8px; }
+    .opinar-texto-calif { min-height: 1.4em; margin: .2rem 0 0; font-weight: 800; color: var(--verde-hoja); }
+    .opinar-campo { display: grid; gap: .35rem; }
+    .opinar-campo span { font-weight: 700; color: var(--tinta); font-size: .95rem; }
+    .opinar-campo small { font-weight: 500; color: var(--texto-suave); }
+    .opinar-campo input, .opinar-campo select, .opinar-campo textarea { width: 100%; padding: .75rem .9rem; border: 1.5px solid var(--borde); border-radius: 12px; background: #fff; color: var(--tinta); font: 500 1rem var(--fuente-texto); }
+    .opinar-campo textarea { min-height: 110px; resize: vertical; }
+    .opinar-campo input:focus, .opinar-campo select:focus, .opinar-campo textarea:focus { outline: none; border-color: var(--azul); box-shadow: 0 0 0 3px rgba(31,86,184,.18); }
+    .opinar-enviar { width: 100%; }
+    .opinar-gracias { display: grid; justify-items: center; gap: .7rem; padding: 2rem 1.5rem 2.2rem; text-align: center; }
+    .opinar-gracias .opinar-producto-estrellas .ico-estrella { width: 30px; height: 30px; }
+    .opinar-gracias h3 { margin: 0; font-size: 1.5rem; color: var(--tinta); }
+    .opinar-gracias p { margin: 0; color: var(--texto-suave); }
     .nota-opiniones { position: relative; margin-top: 2rem; font-size: .93rem; color: #AEBAD2; max-width: 720px; }
 
     /* Ubicación / sucursales */
@@ -879,11 +944,33 @@
           <p>Comentarios de clientes sobre su experiencia en la tienda.</p>
         </div>
         <div class="grid-opiniones">
+          <!-- PARA PUBLICAR UNA OPINIÓN NUEVA: copia la línea de ejemplo de abajo y pégala aquí arriba de las demás
+               (la más nueva va primero). Cambia las estrellas (1 a 5), el texto y el nombre. Si son muchas,
+               la página muestra solo algunas y aparece el botón "Ver más opiniones".
+          <figure class="opinion" data-estrellas="5"><blockquote>Texto de la opinión.</blockquote><figcaption>Nombre · Sucursal</figcaption></figure>
+          -->
           <figure class="opinion"><blockquote>Excelente servicio, y productos de calidad.</blockquote><figcaption>Opinión de cliente</figcaption></figure>
           <figure class="opinion"><blockquote>Excelente atención, extensa variedad de productos de gran calidad.</blockquote><figcaption>Opinión de cliente</figcaption></figure>
           <figure class="opinion"><blockquote>La mejor tienda naturista y los mejores precios. Excelente atención al cliente.</blockquote><figcaption>Opinión de cliente</figcaption></figure>
           <figure class="opinion"><blockquote>Personal confiable y honesto. Producto de excelente calidad.</blockquote><figcaption>Opinión de cliente</figcaption></figure>
           <figure class="opinion"><blockquote>Muy buenos productos naturales y excelente atención.</blockquote><figcaption>Opinión de cliente</figcaption></figure>
+        </div>
+        <div class="opiniones-mas"><button type="button" class="boton boton-claro" id="ver-mas-opiniones" hidden>Ver más opiniones</button></div>
+        <div class="opinar-cta">
+          <div class="opinar-cta-texto">
+            <h3>¿Ya nos visitaste? ¡Cuéntanos qué te pareció!</h3>
+            <p>Califícanos de 1 a 5 estrellas. Tu opinión nos ayuda a mejorar y a que más personas conozcan Super Herbal.</p>
+          </div>
+          <div class="opinar-cta-accion">
+            <div class="opinar-rapido" role="group" aria-label="Califica de 1 a 5 estrellas">
+              <button type="button" data-opinar="5" aria-label="5 estrellas" title="5 de 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.85-4.72 4.48 1.2 6.42L12 17.1l-5.78 3.15 1.2-6.42L2.7 9.35l6.45-.85z"/></svg></button>
+              <button type="button" data-opinar="4" aria-label="4 estrellas" title="4 de 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.85-4.72 4.48 1.2 6.42L12 17.1l-5.78 3.15 1.2-6.42L2.7 9.35l6.45-.85z"/></svg></button>
+              <button type="button" data-opinar="3" aria-label="3 estrellas" title="3 de 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.85-4.72 4.48 1.2 6.42L12 17.1l-5.78 3.15 1.2-6.42L2.7 9.35l6.45-.85z"/></svg></button>
+              <button type="button" data-opinar="2" aria-label="2 estrellas" title="2 de 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.85-4.72 4.48 1.2 6.42L12 17.1l-5.78 3.15 1.2-6.42L2.7 9.35l6.45-.85z"/></svg></button>
+              <button type="button" data-opinar="1" aria-label="1 estrella" title="1 de 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.85-4.72 4.48 1.2 6.42L12 17.1l-5.78 3.15 1.2-6.42L2.7 9.35l6.45-.85z"/></svg></button>
+            </div>
+            <button type="button" class="boton boton-amarillo opinar-boton" data-opinar>Deja tu opinión</button>
+          </div>
         </div>
         <p class="nota-opiniones">Las opiniones reflejan la experiencia personal de cada cliente con la tienda y su atención. Las experiencias pueden variar.</p>
       </div>
@@ -979,6 +1066,7 @@
             <li><a href="#nosotros">Nosotros</a></li>
             <li><a href="#opiniones">Opiniones</a></li>
             <li><a href="#ubicacion">Ubicación</a></li>
+            <li><a href="#opiniones" data-opinar>⭐ Deja tu opinión</a></li>
           </ul>
         </nav>
         <div>
@@ -1039,7 +1127,7 @@
           referencia: "",
           telefono: "312 298 6432",
           whatsapp: "",
-          horario: [],                     // falta el horario de esta sucursal
+          horario: ["Lunes a viernes: 9:00\u00a0a.m.\u00a0–\u00a08:00\u00a0p.m.", "Sábado: 9:00\u00a0a.m.\u00a0–\u00a02:30\u00a0p.m.", "Domingo: cerrado"],
           mapa: ""
         }
       ]
@@ -1301,6 +1389,7 @@
       hoja: svg('<path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15"/><path d="M5 19l7-7"/>'),
       carrito: svg('<path d="M3 4h2.2l2.3 11h10.8L21 7.5H6.4"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/>'),
       carritoMas: svg('<path d="M2.5 4h2.2l2.3 11h10.8l1.6-5.5"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="16.5" cy="19.5" r="1.4"/><path d="M15.5 2.5v6M12.5 5.5h6"/>'),
+      estrella: `<svg class="ico-estrella" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.85-4.72 4.48 1.2 6.42L12 17.1l-5.78 3.15 1.2-6.42L2.7 9.35l6.45-.85z"/></svg>`,
       basura: svg('<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>'),
       wa: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.5-.3z"/></svg>',
       camion: svg('<path d="M1 4h13v11H1z"/><path d="M14 8h4l4 4v3h-8z"/><circle cx="5.5" cy="17.5" r="2"/><circle cx="17.5" cy="17.5" r="2"/>'),
@@ -1830,6 +1919,101 @@
       }).join("");
     };
 
+    // ---------- Dejar opinión (se envía por WhatsApp al número de pedidos) ----------
+    const TEXTO_CALIF = ["", "Muy mala", "Mala", "Regular", "Buena", "¡Excelente!"];
+    const cajaOpinar = document.createElement("dialog");
+    cajaOpinar.className = "opinar";
+    cajaOpinar.setAttribute("aria-labelledby", "opinar-titulo");
+    document.body.appendChild(cajaOpinar);
+    function abrirOpinion(calif = 0, producto = null) {
+      cajaOpinar.innerHTML = `
+        <div class="opinar-cabeza">
+          <button type="button" class="carrito-cerrar" data-cerrar-opinion aria-label="Cerrar">${ICO.x}</button>
+          <h2 id="opinar-titulo">Deja tu opinión</h2>
+          <p>${producto ? `Sobre: <strong style="color:#fff">${escapar(producto.nombre)}</strong>` : "¿Qué te pareció Super Herbal?"}</p>
+        </div>
+        <form class="opinar-cuerpo" novalidate>
+          <fieldset>
+            <legend>Tu calificación</legend>
+            <div class="opinar-estrellas">
+              ${[5, 4, 3, 2, 1].map((n) => `<input type="radio" name="calif" id="calif-${n}" value="${n}"${n === calif ? " checked" : ""}><label for="calif-${n}" title="${TEXTO_CALIF[n]}"><span class="oculto">${n} ${n === 1 ? "estrella" : "estrellas"}</span>${ICO.estrella}</label>`).join("")}
+            </div>
+            <p class="opinar-texto-calif" data-texto-calif>${calif ? TEXTO_CALIF[calif] : "Toca las estrellas"}</p>
+          </fieldset>
+          <label class="opinar-campo"><span>Tu nombre <small>(opcional)</small></span><input name="nombre" autocomplete="given-name" maxlength="60"></label>
+          ${producto ? "" : `<label class="opinar-campo"><span>¿Qué sucursal visitaste? <small>(opcional)</small></span>
+            <select name="sucursal"><option value="">Elige una opción</option>${CONFIG.sucursales.map((s) => `<option>${escapar(s.nombre)}</option>`).join("")}<option>Compré en línea</option></select></label>`}
+          <label class="opinar-campo"><span>Tu comentario <small>(opcional)</small></span><textarea name="comentario" maxlength="500" placeholder="${producto ? "¿Cómo te fue con el producto?" : "Cuéntanos sobre la atención, los productos…"}"></textarea></label>
+          <p class="compra-aviso" data-aviso-opinion hidden>Elige de 1 a 5 estrellas para enviar tu opinión.</p>
+          <button type="submit" class="boton boton-amarillo opinar-enviar">Enviar mi opinión</button>
+          <p class="compra-nota" style="text-align:center">Tu opinión nos llega por WhatsApp.</p>
+        </form>`;
+      cajaOpinar.dataset.producto = producto ? producto.nombre : "";
+      if (!cajaOpinar.open) cajaOpinar.showModal();
+      document.documentElement.style.overflow = "hidden";
+      const primero = calif ? $("textarea", cajaOpinar) : $("#calif-5", cajaOpinar);
+      if (primero && !matchMedia("(pointer: coarse)").matches) primero.focus();
+    }
+    cajaOpinar.addEventListener("change", (e) => {
+      if (e.target.name === "calif") {
+        $("[data-texto-calif]", cajaOpinar).textContent = TEXTO_CALIF[+e.target.value];
+        $("[data-aviso-opinion]", cajaOpinar).hidden = true;
+      }
+    });
+    cajaOpinar.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const f = e.target, calif = +((f.querySelector("input[name=calif]:checked") || {}).value || 0);
+      if (!calif) { $("[data-aviso-opinion]", cajaOpinar).hidden = false; return; }
+      const nombre = f.nombre.value.trim(), comentario = f.comentario.value.trim(), suc = f.sucursal ? f.sucursal.value : "";
+      const lineas = [
+        "Hola, quiero dejar mi opinión sobre Super Herbal:",
+        `${"⭐".repeat(calif)} (${calif} de 5)`,
+        cajaOpinar.dataset.producto && `Producto: ${cajaOpinar.dataset.producto}`,
+        suc && `Sucursal: ${suc}`,
+        nombre && `Nombre: ${nombre}`,
+        comentario && `Comentario: ${comentario}`
+      ].filter(Boolean);
+      window.open(urlWA(lineas.join("\n")), "_blank", "noopener");
+      cajaOpinar.innerHTML = `
+        <div class="opinar-gracias">
+          <span class="opinar-producto-estrellas" aria-hidden="true">${ICO.estrella.repeat(calif)}</span>
+          <h3>¡Gracias por tu opinión!</h3>
+          <p>Solo falta que la envíes en WhatsApp. Nos ayuda mucho a seguir mejorando.</p>
+          <button type="button" class="boton boton-azul" data-cerrar-opinion>Listo</button>
+        </div>`;
+    });
+    cajaOpinar.addEventListener("click", (e) => {
+      if (e.target === cajaOpinar || e.target.closest("[data-cerrar-opinion]")) cajaOpinar.close();
+    });
+    cajaOpinar.addEventListener("close", () => { if (!dialogo.open && !cajaCarrito.open) document.documentElement.style.overflow = ""; });
+    document.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-opinar], [data-opinar-producto]");
+      if (!b) return;
+      e.preventDefault();
+      if (b.dataset.opinarProducto != null) abrirOpinion(0, PRODUCTOS[+b.dataset.opinarProducto]);
+      else abrirOpinion(+b.dataset.opinar || 0);
+    });
+
+    // ---------- Opiniones publicadas: estrellas y "Ver más opiniones" ----------
+    const gridOpiniones = $(".grid-opiniones"), botonMasOpiniones = $("#ver-mas-opiniones");
+    $$(".opinion[data-estrellas]", gridOpiniones).forEach((f) => {
+      const n = Math.max(1, Math.min(5, Math.round(+f.dataset.estrellas) || 5));
+      f.insertAdjacentHTML("afterbegin", `<span class="opinion-estrellas" role="img" aria-label="${n} de 5 estrellas">${[1, 2, 3, 4, 5].map((k) => `<span${k <= n ? ' class="llena"' : ""}>${ICO.estrella}</span>`).join("")}</span>`);
+      f.classList.add("opinion-con-estrellas");
+    });
+    const POR_PAGINA = matchMedia("(max-width: 700px)").matches ? 4 : 6;
+    let opinionesVisibles = POR_PAGINA;
+    function pintarOpiniones() {
+      const todas = $$(".opinion", gridOpiniones);
+      if (todas.length <= opinionesVisibles + 1) opinionesVisibles = todas.length;   // si solo falta una, se muestran todas
+      todas.forEach((f, k) => { f.hidden = k >= opinionesVisibles; });
+      const resto = todas.length - opinionesVisibles;
+      botonMasOpiniones.hidden = resto <= 0;
+      botonMasOpiniones.textContent = resto > 0 ? `Ver más opiniones (${resto})` : "Ver más opiniones";
+    }
+    botonMasOpiniones.addEventListener("click", () => { opinionesVisibles += POR_PAGINA; pintarOpiniones(); });
+    pintarOpiniones();
+
     // ---------- Carrito ----------
     let compra = null;
     const Carrito = (() => {
@@ -2047,6 +2231,11 @@
             `<p class="no-en-linea">Este producto todavía no está disponible para comprar en línea. <a href="${urlWA(`Hola, quiero información sobre ${nombreCompleto(p)}.`)}" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>.</p>
             <p class="detalle-envio">${ICO.camion} Hacemos envíos a toda la República Mexicana. El costo varía dependiendo de tu región.</p>`}
             <dl class="ficha">${filasFicha(p)}</dl>
+            <div class="opinar-producto">
+              <span class="opinar-producto-estrellas" aria-hidden="true">${ICO.estrella.repeat(5)}</span>
+              <p><strong>¿Ya lo probaste?</strong> Cuéntanos qué te pareció.</p>
+              <button type="button" class="boton boton-contorno" data-opinar-producto="${p._i}">Califica este producto</button>
+            </div>
             <p class="detalle-aviso">Información de carácter informativo; no sustituye la orientación de un profesional de la salud. Lee siempre la etiqueta del producto.</p>
           </div>
         </div>
